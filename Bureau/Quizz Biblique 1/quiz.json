@@ -1,0 +1,549 @@
+{
+    "categories": {
+        "all": [
+            {
+                "question": "Quel est le premier livre de la Bible ?",
+                "answers": ["Genèse", "Exode", "Lévitique", "Nombres"],
+                "correct": 0
+            },
+            {
+                "question": "Qui a construit l'arche ?",
+                "answers": ["Moïse", "Noé", "David", "Salomon"],
+                "correct": 1
+            },
+            {
+                "question": "Qui a créé le monde en six jours ?",
+                "answers": ["Moïse", "Abraham", "Dieu", "Adam"],
+                "correct": 2
+            },
+            {
+                "question": "Quelle est la langue originale du Nouveau Testament ?",
+                "answers": ["Hébreu", "Latin", "Grec", "Araméen"],
+                "correct": 2
+            },
+            {
+                "question": "Qui était le roi de la Babylonie qui a détruit Jérusalem ?",
+                "answers": ["Nébucadnetsar", "Darius", "Cyrus", "Salomon"],
+                "correct": 0
+            },
+            {
+                "question": "Le livre des Actes des Apôtres est principalement écrit par ?",
+                "answers": ["Jean", "Luc", "Matthieu", "Marc"],
+                "correct": 1
+            },
+            {
+                "question": "Combien de jours Jonas a-t-il passé dans le ventre du poisson ?",
+                "answers": ["3 jours", "7 jours", "30 jours", "40 jours"],
+                "correct": 0
+            },
+            {
+                "question": "Qui a trahi Jésus pour 30 pièces d'argent ?",
+                "answers": ["Pierre", "Judas", "Jean", "André"],
+                "correct": 1
+            },
+            {
+                "question": "Quelle rivière Moïse a-t-il frappée pour faire sortir l'eau ?",
+                "answers": ["Jourdain", "Nil", "Euphrate", "Tigre"],
+                "correct": 1
+            },
+            {
+                "question": "Quel homme est connu pour avoir été sage ?",
+                "answers": ["Salomon", "David", "Moïse", "Jésus"],
+                "correct": 0
+            },
+            {
+                "question": "Quelle femme a été transformée en statue de sel ?",
+                "answers": ["Marie", "Sara", "Lot", "Lydia"],
+                "correct": 2
+            },
+            {
+                "question": "Qui est le père d'Isaac ?",
+                "answers": ["Abraham", "David", "Noé", "Jacob"],
+                "correct": 0
+            },
+            {
+                "question": "Quel est le dernier livre de la Bible ?",
+                "answers": ["Hébreux", "Apocalypse", "Jean", "Matthieu"],
+                "correct": 1
+            },
+            {
+                "question": "Qui a écrit le livre des Psaumes ?",
+                "answers": ["Moïse", "David", "Salomon", "Esaïe"],
+                "correct": 1
+            },
+            {
+                "question": "Combien de disciples avait Jésus ?",
+                "answers": ["10", "11", "12", "13"],
+                "correct": 2
+            },
+            {
+                "question": "Quel est le nom de la mer que Moïse a traversée ?",
+                "answers": ["Mer Rouge", "Mer Méditerranée", "Mer Noire", "Mer Caspienne"],
+                "correct": 0
+            },
+            {
+                "question": "Qui a écrit la majorité des lettres du Nouveau Testament ?",
+                "answers": ["Pierre", "Jean", "Paul", "Matthieu"],
+                "correct": 2
+            },
+            {
+                "question": "Quelle est la prière que Jésus a enseignée à ses disciples ?",
+                "answers": ["Notre Père", "Je vous salue Marie", "Psaumes 23", "Shema Israël"],
+                "correct": 0
+            },
+            {
+                "question": "Qui a tenté de séduire Samson ?",
+                "answers": ["Marie", "Delilah", "Ruth", "Rebecca"],
+                "correct": 1
+            },
+            {
+                "question": "Quel roi a construit le premier temple de Jérusalem ?",
+                "answers": ["David", "Salomon", "Saül", "Hérode"],
+                "correct": 1
+            },
+            {
+                "question": "Quel est le fruit de l’Esprit selon Galates 5:22-23 ?",
+                "answers": ["Amour", "Paix", "Joie", "Tous les choix mentionnés"],
+                "correct": 3
+            },
+            {
+                "question": "Qui était le seul homme à marcher sur l'eau, selon la Bible ?",
+                "answers": ["Jésus", "Pierre", "Moïse", "David"],
+                "correct": 0
+            }
+        ],
+        "ancien": [
+            {
+                "question": "Qui a mené les Israélites à la terre promise ?",
+                "answers": ["Moïse", "Josué", "David", "Goliath"],
+                "correct": 1
+            },
+            {
+                "question": "Quel est le livre des chants surtout écrit par David ?",
+                "answers": ["Ecclésiaste", "Proverbes", "Psaumes", "Cantique des cantiques"],
+                "correct": 2
+            },
+            {
+                "question": "Quel prophète fut avalé par un grand poisson ?",
+                "answers": ["Jonas", "Esaïe", "Jeremie", "Ezechiel"],
+                "correct": 0
+            },
+            {
+                "question": "Quel roi a régné en Israël après Saül ?",
+                "answers": ["David", "Salomon", "Saül", "Saul"],
+                "correct": 0
+            },
+            {
+                "question": "Combien de fois a Jéricho été contournée avant de tomber ?",
+                "answers": ["3", "5", "7", "10"],
+                "correct": 2
+            },
+            {
+                "question": "Quelle femme a été celle de trois hommes dans la Bible ?",
+                "answers": ["Ruth", "Esther", "Marie", "Rachel"],
+                "correct": 0
+            },
+            {
+                "question": "Sur qui Dieu a envoyé un déluge ?",
+                "answers": ["Moïse", "Noé", "Abraham", "Job"],
+                "correct": 1
+            },
+            {
+                "question": "Qui a volé les idoles de son père ?",
+                "answers": ["Rachel", "Leah", "Deborah", "Miriam"],
+                "correct": 0
+            },
+            {
+                "question": "Quel roi a demandé un épée pour couper l'enfant en deux afin savoir qui était la vraie mère ?",
+                "answers": ["David", "Saül", "Hérode", "Salomon"],
+                "correct": 3
+            },
+            {
+                "question": "Quel est le nom du pays d'origine d'Abraham ?",
+                "answers": ["Chaldée", "Egypte", "Israël", "Babylonie"],
+                "correct": 0
+            },
+            {
+                "question": "Qui était le chef des Israélites après la mort de Moïse ?",
+                "answers": ["Josué", "Gédéon", "David", "Salomon"],
+                "correct": 0
+            },
+            {
+                "question": "Quel livre biblique commence par : 'Au commencement'? ",
+                "answers": ["Génèse", "Exode", "Lévitique", "Nombres"],
+                "correct": 0
+            },
+            {
+                "question": "Qui a interprété le rêve du Pharaon ?",
+                "answers": ["Joseph", "Daniel", "Moïse", "Esaïe"],
+                "correct": 0
+            },
+            {
+                "question": "Quel est l'un des 10 commandements ?",
+                "answers": ["Tu ne voleras pas", "Tu ne mentiras pas", "Tu ne tueras pas", "Tous les choix mentionnés"],
+                "correct": 3
+            },
+            {
+                "question": "Qui était le roi d'Israël qui a lui-même péché avec Bethsabée ?",
+                "answers": ["David", "Saül", "Salomon", "Absalom"],
+                "correct": 0
+            },
+            {
+                "question": "Qui a tué Goliath ?",
+                "answers": ["David", "Saul", "Josué", "Moïse"],
+                "correct": 0
+            },
+            {
+                "question": "Qui a écrit le livre de l'Exode ?",
+                "answers": ["Moïse", "Salomon", "Esaïe", "Matthieu"],
+                "correct": 0
+            },
+            {
+                "question": "Quel est le nom du prophète qui a été enlevé au ciel dans un tourbillon ?",
+                "answers": ["Eli", "Elisée", "Moïse", "David"],
+                "correct": 0
+            },
+            {
+                "question": "Qui est connu comme le père des croyants ?",
+                "answers": ["Moïse", "Abraham", "David", "Salomon"],
+                "correct": 1
+            },
+            {
+                "question": "Quelle était la première famille en Egypte ?",
+                "answers": ["Moïse", "Joseph", "David", "Isaac"],
+                "correct": 1
+            },
+            {
+                "question": "Sur quelle montagne Moïse a-t-il reçu les dix commandements ?",
+                "answers": ["Mont Ararat", "Mont Sinaï", "Mont Zion", "Mont Hermon"],
+                "correct": 1
+            },
+            {
+                "question": "Quel personnage biblique a eu la force extraordinaire ?",
+                "answers": ["Salomon", "Samson", "Saul", "Job"],
+                "correct": 1
+            }
+        ],
+        "nouveau": [
+            {
+                "question": "Qui a baptisé Jésus ?",
+                "answers": ["Pierre", "Jean-Baptiste", "Paul", "Matthieu"],
+                "correct": 1
+            },
+            {
+                "question": "Quel disciple a nié Jésus trois fois ?",
+                "answers": ["Jean", "Pierre", "Judas", "André"],
+                "correct": 1
+            },
+            {
+                "question": "Qui a écrit le livre de l'Apocalypse ?",
+                "answers": ["Jean", "Pierre", "Paul", "Luc"],
+                "correct": 0
+            },
+            {
+                "question": "Qui est considéré comme le premier martyr chrétien ?",
+                "answers": ["Etienne", "Pierre", "Paul", "Jean"],
+                "correct": 0
+            },
+            {
+                "question": "Selon le livre de Matthieu, combien de temps Jésus est resté dans le désert ?",
+                "answers": ["10 jours", "20 jours", "30 jours", "40 jours"],
+                "correct": 3
+            },
+            {
+                "question": "Quel miracle Jésus a-t-il fait lors de son premier miracle ?",
+                "answers": ["Ressusciter Lazare", "Transformer l'eau en vin", "Nourrir 5000 personnes", "Marcher sur l'eau"],
+                "correct": 1
+            },
+            {
+                "question": "Quelle ville était la maison de Jésus ?",
+                "answers": ["Bethléem", "Jérusalem", "Nazareth", "Capharnaüm"],
+                "correct": 2
+            },
+            {
+                "question": "Combien de livres Paul a-t-il écrit dans le Nouveau Testament ?",
+                "answers": ["10", "12", "14", "16"],
+                "correct": 2
+            },
+            {
+                "question": "Qui a été vendu comme esclave par ses frères et qui est devenu le deuxième homme le plus puissant en Egypte ?",
+                "answers": ["Moïse", "Joseph", "Jacob", "David"],
+                "correct": 1
+            },
+            {
+                "question": "Quel est le livre qui raconte la vie de Jésus-Christ ?",
+                "answers": ["Matthieu", "Mark", "Luc", "Tous les choix mentionnés"],
+                "correct": 3
+            },
+            {
+                "question": "Quel fruit Adam et Ève ont-ils mangé ?",
+                "answers": ["Pomme", "Figue", "Banane", "Raisin"],
+                "correct": 0
+            },
+            {
+                "question": "Qui a écrit la lettre aux Romains ?",
+                "answers": ["Pierre", "Paul", "Jean", "Luc"],
+                "correct": 1
+            },
+            {
+                "question": "Qui a reçu la vision de l'apocalypse des derniers jours ?",
+                "answers": ["Paul", "Jean", "Pierre", "Daniel"],
+                "correct": 1
+            },
+            {
+                "question": "Quelle confession a fait Pierre concernant Jésus ?",
+                "answers": ["Tu es le Christ", "Tu es le Fils de Dieu", "Tu es mon Sauveur", "Tu es le Roi des Juifs"],
+                "correct": 0
+            },
+            {
+                "question": "Quelle est la grande béatitude ?",
+                "answers": ["Heureux ceux qui pleurent", "Heureux les affamés", "Heureux les pauvres en esprit", "Heureux les persécutés"],
+                "correct": 2
+            },
+            {
+                "question": "Quelle est la prière que Jésus a enseignée à ses disciples ?",
+                "answers": ["Notre Père", "Je vous salue Marie", "Psaumes 23", "Shema Israël"],
+                "correct": 0
+            },
+            {
+                "question": "Combien de jours Jésus a-t-il jeûné dans le désert ?",
+                "answers": ["30 jours", "20 jours", "40 jours", "50 jours"],
+                "correct": 2
+            },
+            {
+                "question": "Qui a été appelé 'le disciple que Jésus aimait' ?",
+                "answers": ["Jacques", "Jean", "Pierre", "André"],
+                "correct": 1
+            },
+            {
+                "question": "Quel est le surnom de Matthieu ?",
+                "answers": ["Lévi", "Simon", "Jean", "Thomas"],
+                "correct": 0
+            },
+            {
+                "question": "Quel apôtre a écrit le livre de l'Apocalypse ?",
+                "answers": ["Jean", "Pierre", "Matthieu", "Luc"],
+                "correct": 0
+            },
+            {
+                "question": "Qui dit : 'Je suis le chemin, la vérité et la vie' ?",
+                "answers": ["Paul", "Jésus", "Pierre", "Jean"],
+                "correct": 1
+            },
+            {
+                "question": "Qui a trahi Jésus pour 30 pièces d'argent ?",
+                "answers": ["Pierre", "Jean", "Judas", "André"],
+                "correct": 2
+            }
+        ],
+        "personnages": [
+            {
+                "question": "Qui était la mère de Jésus ?",
+                "answers": ["Marie", "Anne", "Sarah", "Rebekah"],
+                "correct": 0
+            },
+            {
+                "question": "Qui a trahi Jésus ?",
+                "answers": ["Pierre", "Jean", "Judas", "Thomas"],
+                "correct": 2
+            },
+            {
+                "question": "Qui a vaincu Goliath ?",
+                "answers": ["David", "Salomon", "Moïse", "Abraham"],
+                "correct": 0
+            },
+            {
+                "question": "Qui était le père de Jean-Baptiste ?",
+                "answers": ["Zacharie", "Joseph", "David", "Pierre"],
+                "correct": 0
+            },
+            {
+                "question": "Qui a dirigé les Israélites pendant l'exode ?",
+                "answers": ["Josué", "Moïse", "Salomon", "Abraham"],
+                "correct": 1
+            },
+            {
+                "question": "Qui était la première femme de la Bible ?",
+                "answers": ["Eve", "Marie", "Sara", "Deborah"],
+                "correct": 0
+            },
+            {
+                "question": "Quel patriarche était connu pour ses rêves ?",
+                "answers": ["Joseph", "Abraham", "Isaac", "Jacob"],
+                "correct": 0
+            },
+            {
+                "question": "Qui était la servante de Sara ?",
+                "answers": ["Hagar", "Rebecca", "Leah", "Miriam"],
+                "correct": 0
+            },
+            {
+                "question": "Quel roi d'Israël a pris la vie d'Urie le Hittite ?",
+                "answers": ["Saül", "David", "Salomon", "Solomon"],
+                "correct": 1
+            },
+            {
+                "question": "Qui a transformé l'eau en vin ?",
+                "answers": ["Jésus", "Moïse", "Pierre", "Jean"],
+                "correct": 0
+            },
+            {
+                "question": "Qui était le roi d'Israël connu pour sa sagesse ?",
+                "answers": ["David", "Saül", "Salomon", "Goliath"],
+                "correct": 2
+            },
+            {
+                "question": "Quel personnage a été ressuscité par Jésus ?",
+                "answers": ["Lazare", "Thomas", "Matthieu", "Simeon"],
+                "correct": 0
+            },
+            {
+                "question": "Qui a dit : 'Je ne crois que si je peux mettre mes doigts dans ses blessures' ?",
+                "answers": ["Pierre", "Jean", "Thomas", "Judas"],
+                "correct": 2
+            },
+            {
+                "question": "Qui a été sauvé des eaux du Nil par la fille du Pharaon ?",
+                "answers": ["Moïse", "David", "Daniel", "Joseph"],
+                "correct": 0
+            },
+            {
+                "question": "Qui a été le dernier roi de Juda avant la destruction de Jérusalem ?",
+                "answers": ["Jehoiachin", "Sédécija", "Manassé", "Amon"],
+                "correct": 1
+            },
+            {
+                "question": "Qui a interprété les rêves de Pharaon ?",
+                "answers": ["Daniel", "Joseph", "Moïse", "David"],
+                "correct": 1
+            },
+            {
+                "question": "Quel personnage de la Bible avait une force extraordinaire ?",
+                "answers": ["Samson", "David", "Goliath", "Salomon"],
+                "correct": 0
+            },
+            {
+                "question": "Qui était le chef pendant la conquête de Canaan ?",
+                "answers": ["Moïse", "Josué", "David", "Saül"],
+                "correct": 1
+            },
+            {
+                "question": "Qui était la première reine de beauté de la Bible ?",
+                "answers": ["Esther", "Deborah", "Ruth", "Marie"],
+                "correct": 0
+            },
+            {
+                "question": "Qui a été jeté dans la fosse aux lions à cause de sa prière ?",
+                "answers": ["Moïse", "Daniel", "David", "Esther"],
+                "correct": 1
+            },
+            {
+                "question": "Qui a écrit des proverbes de sagesse ?",
+                "answers": ["David", "Salomon", "Moïse", "Daniel"],
+                "correct": 1
+            },
+            {
+                "question": "Qui était le fils de David qui a usurpé son trône ?",
+                "answers": ["Absalom", "Salomon", "Saül", "Amnon"],
+                "correct": 0
+            }
+        ],
+        "versets": [
+            {
+                "question": "Quel est le verset le plus connu de la Bible ?",
+                "answers": ["Jean 3:16", "Psaumes 23:1", "Philippiens 4:13", "Exode 20:13"],
+                "correct": 0
+            },
+            {
+                "question": "Qu'est-ce que l'amour ?",
+                "answers": ["1 Jean 4:8", "Romains 8:28", "Matthieu 5:16", "Jean 14:6"],
+                "correct": 0
+            },
+            {
+                "question": "Où dit-on que Dieu est amour ?",
+                "answers": ["Jean 1:4", "1 Jean 4:8", "Psaumes 30:5", "Romains 5:8"],
+                "correct": 1
+            },
+            {
+                "question": "Quel est le premier verset de la Bible ?",
+                "answers": ["Au commencement, Dieu créa le ciel et la terre.", "Dieu est amour.", "Soyez fort et courageux.", "Je suis le chemin, la vérité et la vie."],
+                "correct": 0
+            },
+            {
+                "question": "Dans quel verset est-il dit que 'tous ceux qui invoquent le nom du Seigneur seront sauvés' ?",
+                "answers": ["Romains 10:13", "Jean 3:16", "Actes 2:21", "Matthieu 16:16"],
+                "correct": 0
+            },
+            {
+                "question": "Quel verset parle de la paix qui surpasse toute intelligence ?",
+                "answers": ["Philippiens 4:7", "Colossiens 3:15", "Jean 14:27", "Isaïe 26:3"],
+                "correct": 0
+            },
+            {
+                "question": "Quel verset dit que 'je puis tout par celui qui me fortifie' ?",
+                "answers": ["Philippiens 4:13", "Jean 3:30", "Matthieu 19:26", "Marc 9:23"],
+                "correct": 0
+            },
+            {
+                "question": "Où Jésus dit-il : 'Venez à moi, vous tous qui êtes fatigués et chargés' ?",
+                "answers": ["Matthieu 11:28", "Jean 10:10", "Luc 19:10", "Marc 5:28"],
+                "correct": 0
+            },
+            {
+                "question": "Quel verset commence par 'Je connais les projets que j'ai formés à votre égard' ?",
+                "answers": ["Jérémie 29:11", "Isaïe 40:31", "Philippiens 4:19", "Romains 8:28"],
+                "correct": 0
+            },
+            {
+                "question": "Quel verset parle des deux chemins ?",
+                "answers": ["Psaumes 1", "Matthieu 7:13", "Proverbes 3:5-6", "Proverbes 1:7"],
+                "correct": 1
+            },
+            {
+                "question": "Quel verset promet que 'ceux qui sèment avec larmes moissonneront avec chants de joie' ?",
+                "answers": ["Psaumes 126:5", "Galates 6:9", "Jean 4:35", "2 Corinthiens 9:6"],
+                "correct": 0
+            },
+            {
+                "question": "Quel verset dit que 'le fruit de l'Esprit est amour, joie, paix...' ?",
+                "answers": ["Galates 5:22", "Ephésiens 5:9", "Philippiens 4:4", "Colossiens 3:16"],
+                "correct": 0
+            },
+            {
+                "question": "Quel verset est associé à la promesse de confort ?",
+                "answers": ["2 Corinthiens 1:3", "Philippiens 4:19", "1 Pierre 5:7", "Romains 8:28"],
+                "correct": 0
+            },
+            {
+                "question": "Quel verset promet que 'l'Éternel est mon berger, je ne manquerai de rien' ?",
+                "answers": ["Psaumes 23:1", "Philippiens 4:19", "2 Corinthiens 9:8", "Jean 10:11"],
+                "correct": 0
+            },
+            {
+                "question": "Quel verset conseille de mettre notre confiance en l'Éternel de tout notre cœur ?",
+                "answers": ["Proverbes 3:5", "Psaumes 37:5", "Ésaïe 26:3", "Philippiens 4:6"],
+                "correct": 0
+            },
+            {
+                "question": "De quel verset provient : 'Si quelqu'un veut venir après moi...' ?",
+                "answers": ["Matthieu 16:24", "Luc 14:27", "Marc 8:34", "Jean 15:13"],
+                "correct": 0
+            },
+            {
+                "question": "Où trouve-t-on le verset : 'Tout ce que vous ferez, faites-le de tout votre cœur...' ?",
+                "answers": ["Colossiens 3:23", "Philippiens 2:14", "1 Thessaloniciens 5:17", "Ésaïe 40:31"],
+                "correct": 0
+            },
+            {
+                "question": "Quel verset dit que 'Dieu a tant aimé le monde qu'il a donné son Fils unique' ?",
+                "answers": ["Jean 3:16", "Jean 14:6", "Matthieu 5:14", "Ésaïe 53:5"],
+                "correct": 0
+            },
+            {
+                "question": "Quelle est la première ligne du Psaume 23 ?",
+                "answers": ["L'Éternel est mon berger, je ne manquerai de rien.", "Seigneur, écoute ma prière.", "Béni soit l'Éternel.", "Je te louerai, Seigneur."],
+                "correct": 0
+            }
+        ]
+    }
+}

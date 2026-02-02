@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    background: url('Logo2-images.jpeg') center/cover fixed;
+    min-height: 100vh;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+}
+
+.quiz-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.header h1 {
+    font-size: 2rem;
+    color: #1e40af;
+    margin-bottom: 0.5rem;
+}
+
+.score {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #059669;
+}
+
+button {
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.categories {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.category-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.category-btn.ring-4 {
+    border: 3px solid #60a5fa;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+}
+
+#start-btn {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 1rem 3rem;
+}
+
+.question-container {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #f9fafb;
+    border-radius: 0.75rem;
+    border-left: 4px solid #3b82f6;
+}
+
+.question-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.reference {
+    font-size: 0.9rem;
+    color: #6366f1;
+    font-style: italic;
+    text-align: right;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.answer-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #dbeafe;
+    color: #1e40af;
+    border: 2px solid #93c5fd;
+    text-align: left;
+}
+
+.answer-btn:hover:not(:disabled) {
+    background: #bfdbfe;
+    transform: translateX(5px);
+}
+
+.answer-btn.bg-green-500 {
+    background: #10b981 !important;
+    color: white !important;
+}
+
+.answer-btn.bg-red-500 {
+    background: #ef4444 !important;
+    color: white !important;
+}
+
+.feedback {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.feedback.text-green-600 {
+    background: #d1fae5;
+    color: #047857;
+    border: 2px solid #10b981;
+}
+
+.feedback.text-red-600 {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 2px solid #ef4444;
+}
+
+.final-score {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #059669;
+    margin: 2rem 0;
+}
+
+.result-message {
+    font-size: 1.25rem;
+    padding: 1.5rem;
+    background: #fef3c7;
+    border-radius: 0.75rem;
+    margin: 2rem 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.opacity-50 {
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+    
+    .question-text {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    button {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}

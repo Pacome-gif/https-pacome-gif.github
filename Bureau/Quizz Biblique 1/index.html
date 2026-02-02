@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Biblique</title>
+    <script src="3.4.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-200 font-sans text-gray-800 h-screen w-screen flex">
+    <div class="quiz-container w-full h-full flex flex-col items-center justify-center bg-gray-100 shadow-lg rounded-lg p-10">
+        <div class="container w-full max-w-md">
+            <div class="header mb-6 text-center">
+                <h1 class="text-3xl font-bold mb-2">Quiz Biblique</h1>
+                <div class="score text-lg">Score: <span id="score">0</span></div>
+            </div>
+            
+            <div class="start-screen text-center" id="start-screen">
+                <h2 class="text-2xl mb-4">Testez vos connaissances bibliques</h2>
+                <p class="mb-4">Choisissez une catégorie :</p>
+                <div class="categories mb-4 flex flex-col space-y-2">
+                    <button class="category-btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded" data-category="all">Toutes catégories</button>
+                    <button class="category-btn bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded" data-category="ancien">Ancien Testament</button>
+                    <button class="category-btn bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded" data-category="nouveau">Nouveau Testament</button>
+                    <button class="category-btn bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded" data-category="personnages">Personnages</button>
+                    <button class="category-btn bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded" data-category="versets">Versets célèbres</button>
+                </div>
+                <button id="start-btn" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">Commencer le quiz</button>
+            </div>
+            
+            <div class="quiz-screen hidden" id="quiz-screen">
+                <div class="question-container mb-6">
+                    <div class="question-number text-lg">Question <span id="current-question">1</span>/<span id="total-questions">10</span></div>
+                    <div class="question-text text-xl mb-4" id="question-text"></div>
+                    <div class="reference text-sm text-gray-600" id="reference"></div>
+                </div>
+                
+                <div class="options-container mb-4" id="options-container"></div>
+                
+                <div class="feedback text-lg mb-4" id="feedback"></div>
+                
+                <button id="next-btn" class="hidden bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded">Question suivante</button>
+            </div>
+            
+            <div class="results-screen hidden text-center" id="results-screen">
+                <h2 class="text-2xl mb-4">Résultats du quiz</h2>
+                <div class="final-score text-lg">Votre score: <span id="final-score">0</span>/<span id="max-score">10</span></div>
+                <div class="result-message mb-4" id="result-message"></div>
+                <button id="restart-btn" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">Recommencer</button>
+            </div>
+        </div>
+    </div>
+    <script src="jquery-3.7.1.js"></script>
+    <script src="script-fixed-en.js"></script>
+</body>
+</html>

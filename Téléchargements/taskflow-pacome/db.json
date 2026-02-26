@@ -1,0 +1,14 @@
+{
+  "posts": [
+    { "id": 1, "title": "Premier post", "content": "Contenu du premier post" },
+    { "id": 2, "title": "Deuxième post", "content": "Contenu du deuxième post" }
+  ],
+  "users": [
+    { "id": 1, "name": "Alice", "email": "alice@test.com", "password": "123456" },
+    { "id": 2, "name": "Bob", "email": "bob@test.com", "password": "123456" }
+  ],
+  "tasks": [
+    { "id": 1, "title": "Ma première tâche", "completed": false, "userId": 1 },
+    { "id": 2, "title": "Ma deuxième tâche", "completed": true, "userId": 1 }
+  ]
+}

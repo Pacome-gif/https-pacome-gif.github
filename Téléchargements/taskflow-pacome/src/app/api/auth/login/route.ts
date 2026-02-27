@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
-// simple type representing a user stored in mock DB
 interface UserRecord {
   id: number | string;
   email: string;
@@ -38,7 +37,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Générer un token
+    // Générer un token pour l'utilisateur (ici, on utilise une simple encodage base64 pour l'exemple)
     const token = btoa(JSON.stringify({ id: user.id, email: user.email }));
 
     // Sauvegarder les cookies

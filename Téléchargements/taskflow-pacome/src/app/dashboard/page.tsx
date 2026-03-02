@@ -1,4 +1,3 @@
-// src/app/composants/dashboard/Dashboard.tsx
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css'; // Tous les styles sont importés ici
 

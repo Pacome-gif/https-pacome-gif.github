@@ -29,7 +29,7 @@ export default function Accueil() {
                                         Connexion
                                     </h2>
                                     <p className="text-gray-600 text-center mb-8 text-sm">
-                                        Accédez à votre compte et gérez vos tâches
+                                        Accédez à votre compte et gérez vos tâches de manière efficace et pratique.
                                     </p>
                                     <button className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-blue-800 transition duration-300 shadow-lg flex items-center gap-2 group-hover:gap-3">
                                         Se connecter <FaArrowRight size={16} className="group-hover:translate-x-1 transition" />

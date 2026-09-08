@@ -130,8 +130,8 @@ public class ReservationService {
             throw new IllegalStateException("RG-05 : Seules les réservations en attente ou disponibles peuvent être annulées.");
         }
 
-        // RG-06 : Une réservation ANNULÉE, EXPIRÉE ou HONORÉE ne peut plus changer d'état
-        reservation.setStatut(ReservationStatus.ANNULÉE);
+        // RG-06 : Une réservation ANNULEE, EXPIREE ou HONOREE ne peut plus changer d'état
+        reservation.setStatut(ReservationStatus.ANNULEE);
         Reservation updated = reservationRepository.save(reservation);
         return toResponseDTO(updated);
     }
@@ -166,7 +166,7 @@ public class ReservationService {
             LocalDateTime.now()
         );
         for (Reservation r : expirees) {
-            r.setStatut(ReservationStatus.EXPIRÉE);
+            r.setStatut(ReservationStatus.EXPIREE);
             reservationRepository.save(r);
         }
     }
@@ -211,7 +211,7 @@ public class ReservationService {
             throw new IllegalStateException("Seules les réservations DISPONIBLES peuvent être honorées.");
         }
 
-        reservation.setStatut(ReservationStatus.HONORÉE);
+        reservation.setStatut(ReservationStatus.HONOREE);
         Reservation updated = reservationRepository.save(reservation);
         return toResponseDTO(updated);
     }

@@ -39,13 +39,13 @@ public class JwtService implements UserDetailsService {
         UserDetails userDetails = loadUserByUsername(username);
         String newGeneratedToken = jwtUtil.generateToken(userDetails);
 
-        Users user = userDao.findByUsername(username).get();
+        Users user = userDao.findByUsername(username).orElseThrow(() -> new Exception("Utilisateur non trouvé : " + username));
         return new JwtResponse(user, newGeneratedToken);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users user = userDao.findByUsername(username).get();
+        Users user = userDao.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 
         if (user != null) {
             return new org.springframework.security.core.userdetails.User(

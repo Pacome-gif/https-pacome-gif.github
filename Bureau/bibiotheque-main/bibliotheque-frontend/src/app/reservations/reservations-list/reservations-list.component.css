@@ -1,0 +1,103 @@
+/* Tableau */
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 500px;
+}
+
+.table th {
+  background-color: #198754;
+  color: white;
+  font-weight: 600;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  padding: 0.75rem;
+}
+
+.table td {
+  vertical-align: middle;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  border-color: #e9ecef;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(25, 135, 84, 0.05);
+}
+
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Badges */
+.badge {
+  font-size: 0.75rem;
+  padding: 0.4em 0.7em;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+/* Card */
+.card {
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+}
+
+/* État vide */
+.empty-state {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.empty-state h5 {
+  color: #155724;
+  font-weight: 600;
+}
+
+.empty-state p {
+  color: #155724;
+  margin-bottom: 0;
+}
+
+/* État erreur */
+.empty-state-error {
+  background-color: #f8d7da;
+  color: #842029;
+  border: 1px solid #f5c2c7;
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.empty-state-error h5 {
+  color: #842029;
+  font-weight: 600;
+}
+
+.empty-state-error p {
+  color: #842029;
+  margin-bottom: 1rem;
+}
+
+/* Spinner */
+.spinner-border {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .table th {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+
+  .table td {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+}

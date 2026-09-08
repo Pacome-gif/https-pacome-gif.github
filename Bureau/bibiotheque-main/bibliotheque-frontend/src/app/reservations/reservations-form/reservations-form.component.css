@@ -1,0 +1,49 @@
+/* Card formulaire */
+.card {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: none;
+  border-radius: 10px;
+}
+
+.card-header {
+  border-radius: 10px 10px 0 0 !important;
+  font-weight: 600;
+}
+
+.card-header.bg-success {
+  background: linear-gradient(135deg, #198754, #20c997) !important;
+}
+
+/* Labels */
+.form-label {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+/* Sélecteurs */
+.form-select {
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-select:focus {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.15);
+}
+
+/* Bouton */
+.btn-success {
+  border-radius: 8px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .row.g-3 > [class*="col-"] {
+    margin-bottom: 0.5rem;
+  }
+}

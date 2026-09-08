@@ -1,0 +1,23 @@
+/* Filtre */
+.card {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #495057;
+}
+
+.form-select {
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-select:focus {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.15);
+}

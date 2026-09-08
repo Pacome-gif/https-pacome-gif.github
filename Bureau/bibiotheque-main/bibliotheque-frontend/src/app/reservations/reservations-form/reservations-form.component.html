@@ -1,0 +1,56 @@
+<div class="card mb-4">
+  <div class="card-header bg-success text-white">
+    <h5 class="mb-0">Créer une réservation</h5>
+  </div>
+  <div class="card-body">
+    <div class="row g-3">
+      <!-- Sélection du livre -->
+      <div class="col-12 col-md-5">
+        <label for="livreSelect" class="form-label">Livre *</label>
+        <select 
+          id="livreSelect" 
+          class="form-select" 
+          [(ngModel)]="selectedLivreId"
+          [class.is-invalid]="formError && !selectedLivreId">
+          <option [ngValue]="null" disabled>-- Sélectionnez un livre --</option>
+          <option *ngFor="let book of books" [ngValue]="book.bookId">
+            {{ book.bookName }} ({{ book.noOfCopies }} copie(s) disponible(s))
+          </option>
+        </select>
+      </div>
+
+      <!-- Sélection de l'adhérent -->
+      <div class="col-12 col-md-5">
+        <label for="adherentSelect" class="form-label">Adhérent *</label>
+        <select 
+          id="adherentSelect" 
+          class="form-select" 
+          [(ngModel)]="selectedAdherentId"
+          [class.is-invalid]="formError && !selectedAdherentId">
+          <option [ngValue]="null" disabled>-- Sélectionnez un adhérent --</option>
+          <option *ngFor="let user of users" [ngValue]="user.userId">
+            {{ user.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Bouton de soumission -->
+      <div class="col-12 col-md-2 d-flex align-items-end">
+        <button 
+          class="btn btn-success w-100" 
+          (click)="onSubmit()"
+          [disabled]="!selectedLivreId || !selectedAdherentId">
+          Réserver
+        </button>
+      </div>
+    </div>
+
+    <!-- Messages de retour -->
+    <div *ngIf="formError" class="alert alert-danger mt-3" role="alert">
+      <strong>Erreur :</strong> {{ formError }}
+    </div>
+    <div *ngIf="formSuccess" class="alert alert-success mt-3" role="alert">
+      <strong>Succès :</strong> Réservation créée avec succès !
+    </div>
+  </div>
+</div>

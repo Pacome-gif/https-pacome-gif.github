@@ -26,6 +26,9 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
     // Lister les réservations d'un utilisateur
     List<Reservation> findByUser(Users user);
 
+    // Lister les réservations d'un livre
+    List<Reservation> findByBook(Books book);
+
     // Lister par statut
     List<Reservation> findByStatut(ReservationStatus statut);
 

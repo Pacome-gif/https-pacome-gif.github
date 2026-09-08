@@ -62,4 +62,11 @@ public class ReservationController {
         reservationService.traiterReservationsExpirees();
         return ResponseEntity.ok().build();
     }
+
+    // Honorer une réservation : l'utilisateur vient chercher le livre réservé
+    @PatchMapping("/{id}/honorer")
+    public ResponseEntity<ReservationResponseDTO> honorerReservation(@PathVariable Integer id) {
+        ReservationResponseDTO response = reservationService.honorerReservation(id);
+        return ResponseEntity.ok(response);
+    }
 }

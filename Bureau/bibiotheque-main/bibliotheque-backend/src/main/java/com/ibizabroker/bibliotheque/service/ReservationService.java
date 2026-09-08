@@ -170,4 +170,49 @@ public class ReservationService {
             reservationRepository.save(r);
         }
     }
+
+    // NOTIFICATION : Quand un livre est rendu, vérifier les réservations en attente
+    @Transactional
+    public ReservationResponseDTO notifierLivreDisponible(Integer bookId) {
+        // Trouver le livre
+        Books book = booksRepository.findById(bookId)
+            .orElseThrow(() -> new NotFoundException("Livre non trouvé avec l'ID : " + bookId));
+
+        // Chercher les réservations EN_ATTENTE pour ce livre
+        List<Reservation> reservations = reservationRepository.findByBook(book);
+        
+        // Trouver la première réservation EN_ATTENTE
+        Reservation reservationEnAttente = reservations.stream()
+            .filter(r -> r.getStatut() == ReservationStatus.EN_ATTENTE)
+            .sorted((r1, r2) -> r1.getDateReservation().compareTo(r2.getDateReservation()))
+            .findFirst()
+            .orElse(null);
+
+        if (reservationEnAttente != null) {
+            // Passer la réservation en DISPONIBLE
+            reservationEnAttente.setStatut(ReservationStatus.DISPONIBLE);
+            Reservation updated = reservationRepository.save(reservationEnAttente);
+            
+            // Retourner la réservation mise à jour avec notification
+            return toResponseDTO(updated);
+        }
+
+        // Aucune réservation en attente
+        return null;
+    }
+
+    // HONORER UNE RÉSERVATION : L'utilisateur vient chercher le livre réservé
+    @Transactional
+    public ReservationResponseDTO honorerReservation(Integer reservationId) {
+        Reservation reservation = reservationRepository.findById(reservationId)
+            .orElseThrow(() -> new NotFoundException("Réservation non trouvée avec l'ID : " + reservationId));
+
+        if (reservation.getStatut() != ReservationStatus.DISPONIBLE) {
+            throw new IllegalStateException("Seules les réservations DISPONIBLES peuvent être honorées.");
+        }
+
+        reservation.setStatut(ReservationStatus.HONORÉE);
+        Reservation updated = reservationRepository.save(reservation);
+        return toResponseDTO(updated);
+    }
 }

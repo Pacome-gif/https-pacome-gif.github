@@ -3,9 +3,11 @@ package com.ibizabroker.bibliotheque.controller;
 import com.ibizabroker.bibliotheque.dao.BooksRepository;
 import com.ibizabroker.bibliotheque.dao.BorrowRepository;
 import com.ibizabroker.bibliotheque.dao.UsersRepository;
+import com.ibizabroker.bibliotheque.dto.ReservationResponseDTO;
 import com.ibizabroker.bibliotheque.entity.Books;
 import com.ibizabroker.bibliotheque.entity.Borrow;
 import com.ibizabroker.bibliotheque.entity.Users;
+import com.ibizabroker.bibliotheque.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +29,9 @@ public class BorrowController {
 
     @Autowired
     private BooksRepository booksRepository;
+
+    @Autowired
+    private ReservationService reservationService;
 
     @PostMapping
     public String borrowBook(@RequestBody Borrow borrow) {
@@ -58,7 +63,7 @@ public class BorrowController {
     }
 
     @PutMapping
-    public Borrow returnBook(@RequestBody Borrow borrow) {
+    public String returnBook(@RequestBody Borrow borrow) {
         Borrow borrowBook = borrowRepository.findById(borrow.getBorrowId()).get();
         Books book = booksRepository.findById(borrowBook.getBookId()).get();
 
@@ -67,7 +72,17 @@ public class BorrowController {
 
         Date currentDate = new Date();
         borrowBook.setReturnDate(currentDate);
-        return borrowRepository.save(borrowBook);
+        borrowRepository.save(borrowBook);
+
+        // Vérifier s'il y a des réservations en attente pour ce livre
+        ReservationResponseDTO reservation = reservationService.notifierLivreDisponible(book.getBookId());
+        
+        if (reservation != null) {
+            return borrow.getUserId() + " a rendu le livre \"" + book.getBookName() + "\". " +
+                   "Le livre est maintenant disponible pour l'utilisateur \"" + reservation.getAdherentNom() + "\" (Réservation #" + reservation.getId() + ").";
+        }
+        
+        return borrow.getUserId() + " a rendu le livre \"" + book.getBookName() + "\".";
     }
 
     @GetMapping("user/{id}")

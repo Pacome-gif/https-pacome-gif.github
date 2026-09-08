@@ -1,25 +1,29 @@
-<h2>List of available books in the library</h2>
-<table class="table table-success table-striped">
-    <thead>
+<div class="container mt-4">
+  <h2>Livres disponibles à l'emprunt</h2>
+  <div class="table-responsive-wrapper">
+    <table class="table table-success table-striped">
+      <thead>
         <tr>
-            <th> Book ID </th>
-            <th> Name </th>
-            <th> Author </th>
-            <th> Genre </th>
-            <th> Number of copies available </th>
-            <th> Actions </th>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Auteur</th>
+          <th>Genre</th>
+          <th>Copies</th>
+          <th>Actions</th>
         </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
         <tr *ngFor="let book of books">
-            <td> {{ book.bookId }} </td>
-            <td> {{ book.bookName }} </td>
-            <td> {{ book.bookAuthor }} </td>
-            <td> {{ book.bookGenre }} </td>
-            <td> {{ book.noOfCopies }} </td>
-            <td>
-                <button (click) = "borrowBook(book.bookId)" class="btn btn-success"> Borrow </button>
-            </td>
+          <td data-label="ID">{{ book.bookId }}</td>
+          <td data-label="Nom">{{ book.bookName }}</td>
+          <td data-label="Auteur">{{ book.bookAuthor }}</td>
+          <td data-label="Genre">{{ book.bookGenre }}</td>
+          <td data-label="Copies">{{ book.noOfCopies }}</td>
+          <td data-label="Actions">
+            <button (click)="borrowBook(book.bookId)" class="btn btn-success btn-sm">Emprunter</button>
+          </td>
         </tr>
-    </tbody>
-</table>
+      </tbody>
+    </table>
+  </div>
+</div>

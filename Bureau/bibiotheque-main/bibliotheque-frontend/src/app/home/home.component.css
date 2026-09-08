@@ -1,4 +1,28 @@
+/* Page d'accueil responsive */
 .home {
-    margin-top: 200px;
-    font-size: 80px;
+  margin-top: 5rem;
+  font-size: 2rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+@media (min-width: 576px) {
+  .home {
+    margin-top: 8rem;
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .home {
+    margin-top: 10rem;
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .home {
+    margin-top: 12rem;
+    font-size: 5rem;
+  }
 }

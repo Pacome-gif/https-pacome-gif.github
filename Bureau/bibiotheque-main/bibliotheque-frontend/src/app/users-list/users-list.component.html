@@ -1,29 +1,30 @@
-<h2>User List</h2>
-<table class="table table-success table-striped">
-    <thead>
+<div class="container mt-4">
+  <h2>Liste des Utilisateurs</h2>
+  <div class="table-responsive-wrapper">
+    <table class="table table-success table-striped">
+      <thead>
         <tr>
-            <th> User ID </th>
-            <th> Name </th>
-            <th> Username </th>
-            <th> Role </th>
-            <th> View History </th>
-            <th> Edit User </th>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Username</th>
+          <th>Rôle</th>
+          <th>Actions</th>
         </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
         <tr *ngFor="let user of users">
-            <td> {{ user.userId }} </td>
-            <td> {{ user.name }} </td>
-            <td> {{ user.username }} </td>
-            <td> {{ user.role[0].roleName }} </td>
-            <td>        
-                <div *ngIf="user.role[0].roleName === 'User'">
-                    <button (click) = "userDetails(user.userId)" class="btn btn-success"> View </button>
-                </div>
-            </td>
-            <td>
-                <button (click) = "updateUser(user.userId)" class="btn btn-info"> Edit </button> 
-            </td>
+          <td data-label="ID">{{ user.userId }}</td>
+          <td data-label="Nom">{{ user.name }}</td>
+          <td data-label="Username">{{ user.username }}</td>
+          <td data-label="Rôle">{{ user.role[0].roleName }}</td>
+          <td data-label="Actions">
+            <div *ngIf="user.role[0].roleName === 'User'">
+              <button (click)="userDetails(user.userId)" class="btn btn-success btn-sm me-1">Voir</button>
+            </div>
+            <button (click)="updateUser(user.userId)" class="btn btn-info btn-sm">Modifier</button>
+          </td>
         </tr>
-    </tbody>
-</table>
+      </tbody>
+    </table>
+  </div>
+</div>

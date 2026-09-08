@@ -1,4 +1,64 @@
+/* Header responsive */
+header {
+  width: 100%;
+}
+
+.navbar {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #198754, #20c997) !important;
+}
+
+.navbar-brand {
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .navbar-brand {
+    font-size: 1.25rem;
+  }
+}
+
+.navbar-nav {
+  width: 100%;
+}
+
+@media (max-width: 991px) {
+  .navbar-nav {
+    flex-direction: column;
+    padding: 1rem 0;
+  }
+  
+  .nav-item {
+    padding: 0.25rem 0;
+  }
+  
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
+}
+
 .right-text {
-    margin-left: 1000px;
-    font-size: 17px;
+  margin-left: auto;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .right-text {
+    font-size: 1rem;
+  }
+}
+
+/* Boutons dans la navbar */
+.btn-success, .btn-danger {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .btn-success, .btn-danger {
+    margin-top: 0;
+    width: auto;
+  }
 }

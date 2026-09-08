@@ -1,0 +1,11 @@
+/* Décale le contenu pour laisser la place à la barre latérale de navigation
+   (fixe, 220px) affichée à partir de 768px — voir header.component.css. */
+.app-main {
+  margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .app-main {
+    margin-left: 220px;
+  }
+}

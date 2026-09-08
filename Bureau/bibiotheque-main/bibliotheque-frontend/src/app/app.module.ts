@@ -27,10 +27,12 @@ import { ReturnBookComponent } from './return-book/return-book.component';
 import { ReservationsComponent } from './reservations/reservations.component';
 import { ReservationsListComponent } from './reservations/reservations-list/reservations-list.component';
 import { ReservationsFormComponent } from './reservations/reservations-form/reservations-form.component';
+import { TranslatePipe } from './_i18n/translate.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
+    TranslatePipe,
     BooksListComponent,
     CreateBookComponent,
     UpdateBookComponent,

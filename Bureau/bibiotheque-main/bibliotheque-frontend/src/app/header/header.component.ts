@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserAuthService } from '../_service/user-auth.service';
 import { UsersService } from '../_service/users.service';
+import { LanguageService } from '../_service/language.service';
 
 @Component({
   selector: 'app-header',
@@ -11,9 +12,10 @@ import { UsersService } from '../_service/users.service';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private userAuthService: UserAuthService, 
+    private userAuthService: UserAuthService,
     private router: Router,
     public userService: UsersService,
+    public languageService: LanguageService,
   ) { }
 
   name = this.userAuthService.getName();

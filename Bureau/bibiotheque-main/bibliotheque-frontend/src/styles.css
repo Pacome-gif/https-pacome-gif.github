@@ -154,6 +154,48 @@ h2 {
   padding-left: 15px;
 }
 
+/* ==========================================
+   THÈME BLEU MARINE — remplace le vert "success" de Bootstrap
+   par du bleu marine partout dans l'application, pour rester
+   cohérent avec l'en-tête et l'écran Réservations.
+   ========================================== */
+.btn-success {
+  color: #fff;
+  background-color: #14315c;
+  border-color: #14315c;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active {
+  color: #fff !important;
+  background-color: #1c4587 !important;
+  border-color: #1c4587 !important;
+}
+
+.btn-success:disabled,
+.btn-success.disabled {
+  background-color: #9aa9c2;
+  border-color: #9aa9c2;
+}
+
+.table-success {
+  --bs-table-bg: #eef2f8;
+  --bs-table-striped-bg: #e2e8f2;
+  --bs-table-striped-color: #14315c;
+  --bs-table-active-bg: #d7e0ee;
+  --bs-table-active-color: #14315c;
+  --bs-table-hover-bg: #dbe4f0;
+  --bs-table-hover-color: #14315c;
+  color: #14315c;
+  border-color: #d7e0ee;
+}
+
+/* En-tête de carte bleu marine réutilisable (formulaires "Ajouter...") */
+.card-header-navy {
+  background: linear-gradient(135deg, #14315c, #1c4587) !important;
+}
+
 /* Tables sur mobile - mode carte */
 @media (max-width: 767px) {
   .table thead {

@@ -1,6 +1,6 @@
 /* Card formulaire */
 .card {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0,31,63,0.12);
   border: none;
   border-radius: 10px;
 }
@@ -10,14 +10,14 @@
   font-weight: 600;
 }
 
-.card-header.bg-success {
-  background: linear-gradient(135deg, #198754, #20c997) !important;
+.card-header-navy {
+  background: linear-gradient(135deg, #14315c, #1c4587) !important;
 }
 
 /* Labels */
 .form-label {
   font-weight: 600;
-  color: #495057;
+  color: #14315c;
   margin-bottom: 0.5rem;
 }
 
@@ -30,15 +30,29 @@
 }
 
 .form-select:focus {
-  border-color: #198754;
-  box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.15);
+  border-color: #14315c;
+  box-shadow: 0 0 0 0.2rem rgba(20, 49, 92, 0.15);
 }
 
 /* Bouton */
-.btn-success {
+.btn-navy {
+  background-color: #14315c;
+  border-color: #14315c;
+  color: #ffffff;
   border-radius: 8px;
   padding: 0.6rem 1.5rem;
   font-weight: 600;
+}
+
+.btn-navy:hover:not(:disabled) {
+  background-color: #1c4587;
+  border-color: #1c4587;
+  color: #ffffff;
+}
+
+.btn-navy:disabled {
+  background-color: #9aa9c2;
+  border-color: #9aa9c2;
 }
 
 /* Responsive */

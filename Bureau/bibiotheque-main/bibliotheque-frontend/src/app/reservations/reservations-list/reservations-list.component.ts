@@ -24,9 +24,9 @@ export class ReservationsListComponent {
     switch (statut) {
       case 'EN_ATTENTE': return 'badge bg-warning text-dark';
       case 'DISPONIBLE': return 'badge bg-success';
-      case 'ANNULÉE': return 'badge bg-secondary';
-      case 'EXPIRÉE': return 'badge bg-danger';
-      case 'HONORÉE': return 'badge bg-info';
+      case 'ANNULEE': return 'badge bg-secondary';
+      case 'EXPIREE': return 'badge bg-danger';
+      case 'HONOREE': return 'badge bg-info';
       default: return 'badge bg-secondary';
     }
   }

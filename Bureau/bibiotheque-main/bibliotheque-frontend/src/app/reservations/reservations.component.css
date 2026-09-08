@@ -1,13 +1,19 @@
-/* Filtre */
+/* Page réservations : disposition flex, s'adapte à toute taille d'écran */
+.reservations-page {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .card {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0,31,63,0.10);
   border: 1px solid #e9ecef;
   border-radius: 10px;
 }
 
 .form-label {
   font-weight: 600;
-  color: #495057;
+  color: #14315c;
 }
 
 .form-select {
@@ -18,6 +24,6 @@
 }
 
 .form-select:focus {
-  border-color: #198754;
-  box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.15);
+  border-color: #14315c;
+  box-shadow: 0 0 0 0.2rem rgba(20, 49, 92, 0.15);
 }

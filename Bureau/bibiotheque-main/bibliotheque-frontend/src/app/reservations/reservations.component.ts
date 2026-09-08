@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReservationService } from '../_service/reservation.service';
 import { BooksService } from '../_service/books.service';
 import { UsersService } from '../_service/users.service';
+import { LanguageService } from '../_service/language.service';
 import { Reservation } from '../_model/reservation';
 import { Books } from '../_model/books';
 import { Users } from '../_model/users';
@@ -34,7 +35,8 @@ export class ReservationsComponent implements OnInit {
   constructor(
     private reservationService: ReservationService,
     private booksService: BooksService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private languageService: LanguageService
   ) { }
 
   ngOnInit(): void {
@@ -98,11 +100,17 @@ export class ReservationsComponent implements OnInit {
   }
 
   onAnnulerReservation(reservation: Reservation): void {
-    const confirmation = confirm(
-      `Voulez-vous vraiment annuler la réservation #${reservation.id} ?\n` +
-      `Livre : ${reservation.livreNom}\n` +
-      `Adhérent : ${reservation.adherentNom}`
-    );
+    const confirmation = this.languageService.current === 'en'
+      ? confirm(
+          `Do you really want to cancel reservation #${reservation.id}?\n` +
+          `Book: ${reservation.livreNom}\n` +
+          `Member: ${reservation.adherentNom}`
+        )
+      : confirm(
+          `Voulez-vous vraiment annuler la réservation #${reservation.id} ?\n` +
+          `Livre : ${reservation.livreNom}\n` +
+          `Adhérent : ${reservation.adherentNom}`
+        );
 
     if (!confirmation) return;
 

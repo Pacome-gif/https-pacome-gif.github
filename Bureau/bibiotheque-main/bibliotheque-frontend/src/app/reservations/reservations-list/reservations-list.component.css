@@ -1,37 +1,57 @@
-/* Tableau */
-.table {
+/* Grille de réservations en cartes — flex, s'adapte à toute taille d'écran */
+.reservations-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.reservation-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 280px;
+  min-width: 260px;
+  background-color: #ffffff;
+  border: 1px solid #d7dee8;
   border-radius: 10px;
-  overflow: hidden;
-  min-width: 500px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 31, 63, 0.10);
+  transition: box-shadow 0.2s ease;
 }
 
-.table th {
-  background-color: #198754;
-  color: white;
+.reservation-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 31, 63, 0.18);
+}
+
+/* Chaque champ : libellé aligné à gauche, valeur à droite, empilés du haut vers le bas */
+.reservation-field {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eef2f8;
+  text-align: left;
+}
+
+.reservation-field:last-child {
+  border-bottom: none;
+}
+
+.field-label {
   font-weight: 600;
-  white-space: nowrap;
+  color: #14315c;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.field-value {
+  color: #333333;
   font-size: 0.9rem;
-  padding: 0.75rem;
+  text-align: right;
 }
 
-.table td {
-  vertical-align: middle;
-  padding: 0.75rem;
-  font-size: 0.9rem;
-  border-color: #e9ecef;
-}
-
-.table tbody tr:hover {
-  background-color: rgba(25, 135, 84, 0.05);
-}
-
-.table-responsive-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Badges */
+/* Badges de statut */
 .badge {
   font-size: 0.75rem;
   padding: 0.4em 0.7em;
@@ -39,32 +59,26 @@
   font-weight: 500;
 }
 
-/* Card */
-.card {
-  border: 1px solid #e9ecef;
-  border-radius: 10px;
-}
-
-/* État vide */
+/* État vide (informationnel, thème marine) */
 .empty-state {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+  background-color: #eef2f8;
+  color: #14315c;
+  border: 1px solid #c7d2e6;
   border-radius: 10px;
   padding: 1.5rem;
 }
 
 .empty-state h5 {
-  color: #155724;
+  color: #14315c;
   font-weight: 600;
 }
 
 .empty-state p {
-  color: #155724;
+  color: #14315c;
   margin-bottom: 0;
 }
 
-/* État erreur */
+/* État erreur — reste rouge, signal volontairement distinct de l'erreur */
 .empty-state-error {
   background-color: #f8d7da;
   color: #842029;
@@ -83,21 +97,32 @@
   margin-bottom: 1rem;
 }
 
+/* Bouton "Réessayer" */
+.btn-navy {
+  background-color: #14315c;
+  border-color: #14315c;
+  color: #ffffff;
+}
+
+.btn-navy:hover {
+  background-color: #1c4587;
+  border-color: #1c4587;
+  color: #ffffff;
+}
+
 /* Spinner */
 .spinner-border {
   width: 2.5rem;
   height: 2.5rem;
 }
 
-/* Responsive */
-@media (max-width: 767px) {
-  .table th {
-    font-size: 0.8rem;
-    padding: 0.5rem;
-  }
+.spinner-navy {
+  color: #14315c;
+}
 
-  .table td {
-    font-size: 0.85rem;
-    padding: 0.5rem;
+/* Responsive */
+@media (max-width: 480px) {
+  .reservation-card {
+    flex: 1 1 100%;
   }
 }

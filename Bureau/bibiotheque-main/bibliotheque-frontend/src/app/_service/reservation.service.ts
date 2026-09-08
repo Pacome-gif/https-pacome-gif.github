@@ -53,21 +53,21 @@ export class ReservationService {
       // Erreur côté client
       errorMessage = `Erreur réseau : ${error.error.message}`;
     } else {
-      // Erreur côté serveur
+      // Erreur côté serveur (le backend renvoie { erreur: "..." })
       if (error.status === 409) {
         // Conflit métier (livre disponible, réservation existante, quota atteint)
-        errorMessage = error.error?.message || error.error || 'Conflit : ' + (error.message || 'Opération refusée');
+        errorMessage = error.error?.erreur || 'Conflit : ' + (error.message || 'Opération refusée');
       } else if (error.status === 400) {
         // Mauvaise requête (champs manquants)
-        errorMessage = error.error?.message || error.error || 'Données invalides. Veuillez vérifier les champs.';
+        errorMessage = error.error?.erreur || 'Données invalides. Veuillez vérifier les champs.';
       } else if (error.status === 404) {
         // Non trouvé
-        errorMessage = error.error?.message || error.error || 'Ressource non trouvée.';
+        errorMessage = error.error?.erreur || 'Ressource non trouvée.';
       } else if (error.status === 0) {
         // Serveur injoignable
         errorMessage = 'Le serveur est injoignable. Vérifiez que le backend est démarré.';
       } else {
-        errorMessage = `Erreur ${error.status} : ${error.error?.message || error.message}`;
+        errorMessage = `Erreur ${error.status} : ${error.error?.erreur || error.message}`;
       }
     }
 

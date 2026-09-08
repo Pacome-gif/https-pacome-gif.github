@@ -1,33 +1,33 @@
 <div class="card mb-4">
-  <div class="card-header bg-success text-white">
-    <h5 class="mb-0">Créer une réservation</h5>
+  <div class="card-header card-header-navy text-white">
+    <h5 class="mb-0">{{ 'form.title' | translate }}</h5>
   </div>
   <div class="card-body">
     <div class="row g-3">
       <!-- Sélection du livre -->
       <div class="col-12 col-md-5">
-        <label for="livreSelect" class="form-label">Livre *</label>
-        <select 
-          id="livreSelect" 
-          class="form-select" 
+        <label for="livreSelect" class="form-label">{{ 'form.book' | translate }}</label>
+        <select
+          id="livreSelect"
+          class="form-select"
           [(ngModel)]="selectedLivreId"
           [class.is-invalid]="formError && !selectedLivreId">
-          <option [ngValue]="null" disabled>-- Sélectionnez un livre --</option>
+          <option [ngValue]="null" disabled>{{ 'form.bookPlaceholder' | translate }}</option>
           <option *ngFor="let book of books" [ngValue]="book.bookId">
-            {{ book.bookName }} ({{ book.noOfCopies }} copie(s) disponible(s))
+            {{ book.bookName }} ({{ book.noOfCopies }} {{ 'form.bookCopiesSuffix' | translate }})
           </option>
         </select>
       </div>
 
       <!-- Sélection de l'adhérent -->
       <div class="col-12 col-md-5">
-        <label for="adherentSelect" class="form-label">Adhérent *</label>
-        <select 
-          id="adherentSelect" 
-          class="form-select" 
+        <label for="adherentSelect" class="form-label">{{ 'form.member' | translate }}</label>
+        <select
+          id="adherentSelect"
+          class="form-select"
           [(ngModel)]="selectedAdherentId"
           [class.is-invalid]="formError && !selectedAdherentId">
-          <option [ngValue]="null" disabled>-- Sélectionnez un adhérent --</option>
+          <option [ngValue]="null" disabled>{{ 'form.memberPlaceholder' | translate }}</option>
           <option *ngFor="let user of users" [ngValue]="user.userId">
             {{ user.name }}
           </option>
@@ -36,21 +36,21 @@
 
       <!-- Bouton de soumission -->
       <div class="col-12 col-md-2 d-flex align-items-end">
-        <button 
-          class="btn btn-success w-100" 
+        <button
+          class="btn btn-navy w-100"
           (click)="onSubmit()"
           [disabled]="!selectedLivreId || !selectedAdherentId">
-          Réserver
+          {{ 'form.submit' | translate }}
         </button>
       </div>
     </div>
 
     <!-- Messages de retour -->
     <div *ngIf="formError" class="alert alert-danger mt-3" role="alert">
-      <strong>Erreur :</strong> {{ formError }}
+      <strong>{{ 'form.errorPrefix' | translate }}</strong> {{ formError }}
     </div>
     <div *ngIf="formSuccess" class="alert alert-success mt-3" role="alert">
-      <strong>Succès :</strong> Réservation créée avec succès !
+      <strong>{{ 'form.successPrefix' | translate }}</strong> {{ 'form.successMessage' | translate }}
     </div>
   </div>
 </div>

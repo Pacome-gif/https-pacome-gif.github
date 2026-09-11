@@ -20,8 +20,12 @@
               <input type="password" class="form-control" id="password" [(ngModel)]="user.password" name="password" placeholder="Entrez le mot de passe">
             </div>
             <div class="mb-3">
-              <label class="form-label">Rôle (Admin, User)</label>
-              <input type="text" class="form-control" id="role" [(ngModel)]="user.role[0].roleName" name="role" placeholder="Admin ou User">
+              <label class="form-label">Rôle</label>
+              <select class="form-select" id="role" [(ngModel)]="user.role[0].roleName" name="role">
+                <option value="ADHERENT">Adhérent</option>
+                <option value="BIBLIOTHECAIRE">Bibliothécaire</option>
+                <option value="Admin">Admin</option>
+              </select>
             </div>
             <button class="btn btn-success w-100" type="submit">Ajouter</button>
           </form>

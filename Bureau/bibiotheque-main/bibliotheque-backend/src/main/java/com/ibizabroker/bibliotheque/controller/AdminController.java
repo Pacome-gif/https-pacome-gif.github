@@ -23,7 +23,7 @@ public class AdminController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/users")
-//    @PreAuthorize("hasRole('Admin')")
+//    @PreAuthorize("hasAnyRole('Admin', 'BIBLIOTHECAIRE')")
     public Users addUserByAdmin(@RequestBody Users user) {
 //        Role role = new Role();
 ////        role.setRoleName(UserConstant.DEFAULT_ROLE);
@@ -46,14 +46,14 @@ public class AdminController {
         return usersRepository.findAll();
     }
 
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasAnyRole('Admin', 'BIBLIOTHECAIRE')")
     @GetMapping("/users/{id}")
     public ResponseEntity<Users> getUserById(@PathVariable Integer id) {
         Users user = usersRepository.findById(id).orElseThrow(() -> new NotFoundException("User with id "+ id +" does not exist."));
         return ResponseEntity.ok(user);
     }
 
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasAnyRole('Admin', 'BIBLIOTHECAIRE')")
     @PutMapping("/users/{id}")
     public ResponseEntity<Users> updateUser(@PathVariable Integer id, @RequestBody Users userDetails) {
         Users user = usersRepository.findById(id).orElseThrow(() -> new NotFoundException("User with id "+ id +" does not exist."));

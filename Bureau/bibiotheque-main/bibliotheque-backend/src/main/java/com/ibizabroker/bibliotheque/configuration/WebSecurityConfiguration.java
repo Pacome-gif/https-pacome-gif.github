@@ -43,13 +43,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
                 .antMatchers("/authenticate").permitAll()
                 .antMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/api-docs/**").permitAll()
-                // Le BIBLIOTHECAIRE a besoin de lister les adhérents pour pouvoir réserver en
-                // leur nom (formulaire de création de réservation) ; règles placées avant la règle
-                // générale /admin/** (antMatchers utilise la première correspondance qui matche).
-                .antMatchers(org.springframework.http.HttpMethod.GET, "/admin/users").hasAnyRole("Admin", "BIBLIOTHECAIRE")
                 // Le catalogue des livres doit être consultable par tout utilisateur authentifié :
-                // un ADHERENT comme un BIBLIOTHECAIRE en ont besoin pour choisir quel livre réserver.
+                // un simple ADHERENT en a besoin pour choisir quel livre réserver. Cette règle doit
+                // précéder "/admin/books/**" ci-dessous : ce motif matche aussi le chemin exact
+                // /admin/books (pas seulement ses sous-chemins), donc s'il passait en premier, un
+                // ADHERENT se ferait bloquer y compris en lecture (antMatchers = première
+                // correspondance qui matche, la suite n'est jamais évaluée).
                 .antMatchers(org.springframework.http.HttpMethod.GET, "/admin/books").authenticated()
+                // Le BIBLIOTHECAIRE gère le quotidien de la bibliothèque au même titre qu'Admin :
+                // catalogue des livres et gestion des adhérents (listing, fiche, création,
+                // modification). Reste avant la règle générale /admin/** (Admin uniquement).
+                .antMatchers("/admin/books/**").hasAnyRole("Admin", "BIBLIOTHECAIRE")
+                .antMatchers("/admin/users/**").hasAnyRole("Admin", "BIBLIOTHECAIRE")
                 .antMatchers("/admin/**").hasRole("Admin")
                 .antMatchers("/api/reservations/**").authenticated()
                 .anyRequest().authenticated()

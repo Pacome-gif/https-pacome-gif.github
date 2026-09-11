@@ -19,6 +19,11 @@ export class UpdateUserComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.route.snapshot.params['userId'];
     this.usersService.getUserById(this.userId).subscribe(data => {
+      // Un utilisateur sans rôle assigné (data.role vide) ferait planter le formulaire, qui lit
+      // user.role[0].roleName directement.
+      if (!data.role || data.role.length === 0) {
+        data.role = [{ roleName: '' }];
+      }
       this.user = data;
     })
   }

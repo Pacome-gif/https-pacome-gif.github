@@ -15,6 +15,8 @@ export class RegistrationComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    // ADHERENT est le cas d'usage le plus courant pour ce formulaire (inscrire un adhérent).
+    this.user.role[0].roleName = 'ADHERENT';
   }
 
   saveUser() {

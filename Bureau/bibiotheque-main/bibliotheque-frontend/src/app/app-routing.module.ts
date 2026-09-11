@@ -16,16 +16,20 @@ import { UsersListComponent } from './users-list/users-list.component';
 import { ReservationsComponent } from './reservations/reservations.component';
 import { AuthGuard } from './_auth/auth.guard';
 
+// Le BIBLIOTHECAIRE gère le quotidien de la bibliothèque au même titre qu'Admin : catalogue des
+// livres et gestion des adhérents (voir WebSecurityConfiguration côté backend).
+const ROLES_GESTION = ['Admin', 'BIBLIOTHECAIRE'];
+
 const routes: Routes = [
-  {path: 'books', component: BooksListComponent, canActivate:[AuthGuard], data:{roles:['Admin']}},
-  {path: 'create-book', component: CreateBookComponent, canActivate:[AuthGuard], data:{roles:['Admin']}},
+  {path: 'books', component: BooksListComponent, canActivate:[AuthGuard], data:{roles: ROLES_GESTION}},
+  {path: 'create-book', component: CreateBookComponent, canActivate:[AuthGuard], data:{roles: ROLES_GESTION}},
   {path: '', component: HomeComponent},
-  {path: 'update-book/:bookId', component: UpdateBookComponent, canActivate:[AuthGuard], data:{roles:['Admin']}},
-  {path: 'book-details/:bookId', component: BookDetailsComponent, canActivate:[AuthGuard], data:{roles:['Admin']}},
-  {path: 'users', component: UsersListComponent, canActivate:[AuthGuard], data:{roles:['Admin']}},
-  {path: 'register-user', component: RegistrationComponent, canActivate:[AuthGuard], data:{roles:['Admin']}},
-  {path: 'user-details/:userId', component: UserDetailsComponent, canActivate:[AuthGuard], data:{roles:['Admin']}},
-  {path: 'update-user/:userId', component: UpdateUserComponent, canActivate:[AuthGuard], data:{roles:['Admin']}},
+  {path: 'update-book/:bookId', component: UpdateBookComponent, canActivate:[AuthGuard], data:{roles: ROLES_GESTION}},
+  {path: 'book-details/:bookId', component: BookDetailsComponent, canActivate:[AuthGuard], data:{roles: ROLES_GESTION}},
+  {path: 'users', component: UsersListComponent, canActivate:[AuthGuard], data:{roles: ROLES_GESTION}},
+  {path: 'register-user', component: RegistrationComponent, canActivate:[AuthGuard], data:{roles: ROLES_GESTION}},
+  {path: 'user-details/:userId', component: UserDetailsComponent, canActivate:[AuthGuard], data:{roles: ROLES_GESTION}},
+  {path: 'update-user/:userId', component: UpdateUserComponent, canActivate:[AuthGuard], data:{roles: ROLES_GESTION}},
   {path: 'login', component: LoginComponent},
   {path: 'forbidden', component: ForbiddenComponent},
   {path: 'borrow-book', component: BorrowBookComponent, canActivate:[AuthGuard], data:{roles:['User']}},

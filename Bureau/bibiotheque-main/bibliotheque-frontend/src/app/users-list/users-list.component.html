@@ -16,9 +16,9 @@
           <td data-label="ID">{{ user.userId }}</td>
           <td data-label="Nom">{{ user.name }}</td>
           <td data-label="Username">{{ user.username }}</td>
-          <td data-label="Rôle">{{ user.role[0].roleName }}</td>
+          <td data-label="Rôle">{{ user.role?.[0]?.roleName || '—' }}</td>
           <td data-label="Actions">
-            <div *ngIf="user.role[0].roleName === 'User'">
+            <div *ngIf="user.role?.[0]?.roleName === 'User'">
               <button (click)="userDetails(user.userId)" class="btn btn-success btn-sm me-1">Voir</button>
             </div>
             <button (click)="updateUser(user.userId)" class="btn btn-info btn-sm">Modifier</button>

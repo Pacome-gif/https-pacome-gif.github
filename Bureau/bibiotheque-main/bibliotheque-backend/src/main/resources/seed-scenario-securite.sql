@@ -65,11 +65,16 @@ END $$;
 -- ==========================================
 -- LIVRE INDISPONIBLE (RG-01 : une réservation n'est possible que si no_of_copies = 0)
 -- ==========================================
+-- Note : la table s'appelle "books" en base (nom généré par Hibernate à partir de l'entité
+-- Books), malgré le @Table(name = "Books") — la stratégie de nommage la met en minuscules.
+-- book_id n'a pas de valeur par défaut en base (Hibernate le calcule côté application via
+-- hibernate_sequence pour GenerationType.AUTO) : on doit donc le fournir explicitement ici,
+-- comme pour user_id plus haut.
 DO $$
 BEGIN
-    IF NOT EXISTS (SELECT 1 FROM "Books" WHERE book_name = 'L-SECURITE - Livre pour démo sécurité') THEN
-        INSERT INTO "Books" (book_name, book_author, book_genre, no_of_copies)
-        VALUES ('L-SECURITE - Livre pour démo sécurité', 'Auteur Démo', 'Roman', 0);
+    IF NOT EXISTS (SELECT 1 FROM "books" WHERE book_name = 'L-SECURITE - Livre pour démo sécurité') THEN
+        INSERT INTO "books" (book_id, book_name, book_author, book_genre, no_of_copies)
+        VALUES (nextval('hibernate_sequence'), 'L-SECURITE - Livre pour démo sécurité', 'Auteur Démo', 'Roman', 0);
     END IF;
 END $$;
 
@@ -84,7 +89,7 @@ DECLARE
 BEGIN
     SELECT user_id INTO adh1_id FROM "users" WHERE username = 'ADH1';
     SELECT user_id INTO adh2_id FROM "users" WHERE username = 'ADH2';
-    SELECT book_id INTO livre_id FROM "Books" WHERE book_name = 'L-SECURITE - Livre pour démo sécurité';
+    SELECT book_id INTO livre_id FROM "books" WHERE book_name = 'L-SECURITE - Livre pour démo sécurité';
 
     IF NOT EXISTS (SELECT 1 FROM "reservation" WHERE user_id = adh1_id AND book_id = livre_id) THEN
         INSERT INTO "reservation" (book_id, user_id, date_reservation, date_expiration, statut)

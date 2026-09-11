@@ -82,6 +82,13 @@ header {
   width: auto;
 }
 
+/* Boutons avec icône (login/logout) : icône et texte alignés, léger espace entre eux. */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
 /* Menu de navigation : barre latérale verticale à gauche, sous le bandeau du
    haut, sur toute la hauteur restante de l'écran. */
 .app-navbar {
@@ -121,7 +128,9 @@ header {
 /* Chaque lien a l'air d'un vrai bouton cliquable : fond visible au repos,
    et au survol il change de couleur et se déplace légèrement vers la droite. */
 .nav-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   width: 100%;
   color: rgba(255, 255, 255, 0.85);
   padding: 0.7rem 1rem;
@@ -132,6 +141,11 @@ header {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   transition: background-color 0.2s ease, color 0.2s ease,
               transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.nav-link lucide-icon {
+  flex-shrink: 0;
+  opacity: 0.85;
 }
 
 .nav-link:hover {

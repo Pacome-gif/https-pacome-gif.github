@@ -7,8 +7,14 @@
         <button type="button" [class.active]="languageService.current === 'en'" (click)="languageService.setLang('en')">EN</button>
       </div>
       <span class="hey-text" *ngIf="isLoggedIn()"><strong>{{ 'nav.hey' | translate }} {{name}}</strong></span>
-      <button *ngIf="!isLoggedIn()" type="button" class="btn btn-light btn-sm" routerLink="/login">{{ 'nav.login' | translate }}</button>
-      <button *ngIf="isLoggedIn()" type="button" class="btn btn-outline-light btn-sm" (click)="logout()">{{ 'nav.logout' | translate }}</button>
+      <button *ngIf="!isLoggedIn()" type="button" class="btn btn-light btn-sm icon-btn" routerLink="/login">
+        <lucide-icon name="log-in" class="tw-w-4 tw-h-4"></lucide-icon>
+        {{ 'nav.login' | translate }}
+      </button>
+      <button *ngIf="isLoggedIn()" type="button" class="btn btn-outline-light btn-sm icon-btn" (click)="logout()">
+        <lucide-icon name="log-out" class="tw-w-4 tw-h-4"></lucide-icon>
+        {{ 'nav.logout' | translate }}
+      </button>
     </div>
   </div>
   <nav class="app-navbar">
@@ -16,31 +22,52 @@
       <ul class="nav-list">
 
         <li class="nav-item">
-          <a routerLink="/books" routerLinkActive="active" class="nav-link" *ngIf="userService.roleMatch(['Admin', 'BIBLIOTHECAIRE'])">{{ 'nav.books' | translate }}</a>
+          <a routerLink="/books" routerLinkActive="active" class="nav-link" *ngIf="userService.roleMatch(['Admin', 'BIBLIOTHECAIRE'])">
+            <lucide-icon name="book-open" class="tw-w-4 tw-h-4"></lucide-icon>
+            {{ 'nav.books' | translate }}
+          </a>
         </li>
 
         <li class="nav-item">
-          <a routerLink="/create-book" routerLinkActive="active" class="nav-link" *ngIf="userService.roleMatch(['Admin', 'BIBLIOTHECAIRE'])">{{ 'nav.addBook' | translate }}</a>
+          <a routerLink="/create-book" routerLinkActive="active" class="nav-link" *ngIf="userService.roleMatch(['Admin', 'BIBLIOTHECAIRE'])">
+            <lucide-icon name="plus" class="tw-w-4 tw-h-4"></lucide-icon>
+            {{ 'nav.addBook' | translate }}
+          </a>
         </li>
 
         <li class="nav-item">
-          <a routerLink="/users" routerLinkActive="active" class="nav-link" *ngIf="userService.roleMatch(['Admin', 'BIBLIOTHECAIRE'])">{{ 'nav.users' | translate }}</a>
+          <a routerLink="/users" routerLinkActive="active" class="nav-link" *ngIf="userService.roleMatch(['Admin', 'BIBLIOTHECAIRE'])">
+            <lucide-icon name="users" class="tw-w-4 tw-h-4"></lucide-icon>
+            {{ 'nav.users' | translate }}
+          </a>
         </li>
 
         <li class="nav-item">
-          <a routerLink="/register-user" routerLinkActive="active" class="nav-link" *ngIf="userService.roleMatch(['Admin', 'BIBLIOTHECAIRE'])">{{ 'nav.registerUser' | translate }}</a>
+          <a routerLink="/register-user" routerLinkActive="active" class="nav-link" *ngIf="userService.roleMatch(['Admin', 'BIBLIOTHECAIRE'])">
+            <lucide-icon name="user-plus" class="tw-w-4 tw-h-4"></lucide-icon>
+            {{ 'nav.registerUser' | translate }}
+          </a>
         </li>
 
         <li class="nav-item">
-          <a routerLink="/borrow-book" routerLinkActive="active" class="nav-link" *ngIf="userService.roleMatch(['User'])">{{ 'nav.borrowBooks' | translate }}</a>
+          <a routerLink="/borrow-book" routerLinkActive="active" class="nav-link" *ngIf="userService.roleMatch(['User'])">
+            <lucide-icon name="book-plus" class="tw-w-4 tw-h-4"></lucide-icon>
+            {{ 'nav.borrowBooks' | translate }}
+          </a>
         </li>
 
         <li class="nav-item">
-          <a routerLink="/return-book" routerLinkActive="active" class="nav-link" *ngIf="userService.roleMatch(['User'])">{{ 'nav.returnBooks' | translate }}</a>
+          <a routerLink="/return-book" routerLinkActive="active" class="nav-link" *ngIf="userService.roleMatch(['User'])">
+            <lucide-icon name="undo-2" class="tw-w-4 tw-h-4"></lucide-icon>
+            {{ 'nav.returnBooks' | translate }}
+          </a>
         </li>
 
         <li class="nav-item">
-          <a routerLink="/reservations" routerLinkActive="active" class="nav-link" *ngIf="userService.roleMatch(['ADHERENT', 'BIBLIOTHECAIRE'])">{{ 'nav.reservations' | translate }}</a>
+          <a routerLink="/reservations" routerLinkActive="active" class="nav-link" *ngIf="userService.roleMatch(['ADHERENT', 'BIBLIOTHECAIRE'])">
+            <lucide-icon name="calendar-check" class="tw-w-4 tw-h-4"></lucide-icon>
+            {{ 'nav.reservations' | translate }}
+          </a>
         </li>
 
       </ul>

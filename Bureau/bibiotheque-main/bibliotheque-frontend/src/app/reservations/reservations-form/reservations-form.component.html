@@ -5,7 +5,7 @@
   <div class="card-body">
     <div class="row g-3">
       <!-- Sélection du livre -->
-      <div class="col-12 col-md-5">
+      <div class="col-12" [class.col-md-5]="isBibliothecaire" [class.col-md-8]="!isBibliothecaire">
         <label for="livreSelect" class="form-label">{{ 'form.book' | translate }}</label>
         <select
           id="livreSelect"
@@ -19,8 +19,9 @@
         </select>
       </div>
 
-      <!-- Sélection de l'adhérent -->
-      <div class="col-12 col-md-5">
+      <!-- Sélection de l'adhérent : uniquement pour un BIBLIOTHECAIRE (RS-04 : un ADHERENT
+           réserve toujours pour lui-même, son identité vient du token, pas de choix ici). -->
+      <div class="col-12 col-md-5" *ngIf="isBibliothecaire">
         <label for="adherentSelect" class="form-label">{{ 'form.member' | translate }}</label>
         <select
           id="adherentSelect"
@@ -34,12 +35,17 @@
         </select>
       </div>
 
+      <!-- Pour un ADHERENT : rappel que la réservation se fait en son nom -->
+      <div class="col-12" *ngIf="!isBibliothecaire">
+        <span class="form-text">{{ 'form.memberSelf' | translate }}</span>
+      </div>
+
       <!-- Bouton de soumission -->
       <div class="col-12 col-md-2 d-flex align-items-end">
         <button
           class="btn btn-navy w-100"
           (click)="onSubmit()"
-          [disabled]="!selectedLivreId || !selectedAdherentId">
+          [disabled]="!peutSoumettre">
           {{ 'form.submit' | translate }}
         </button>
       </div>

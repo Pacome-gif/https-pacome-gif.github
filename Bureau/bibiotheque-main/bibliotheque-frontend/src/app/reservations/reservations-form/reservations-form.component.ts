@@ -13,19 +13,29 @@ export class ReservationsFormComponent {
   @Input() users: Users[] = [];
   @Input() formError: string | null = null;
   @Input() formSuccess = false;
+  // RS-04 : un ADHERENT réserve toujours pour lui-même (identité tirée du token côté backend),
+  // il n'y a donc pas de sélecteur d'adhérent pour lui. Seul le BIBLIOTHECAIRE choisit pour qui.
+  @Input() isBibliothecaire = false;
 
-  @Output() creer = new EventEmitter<{ livreId: number; adherentId: number }>();
+  @Output() creer = new EventEmitter<{ livreId: number; adherentId: number | null }>();
 
   selectedLivreId: number | null = null;
   selectedAdherentId: number | null = null;
 
+  get peutSoumettre(): boolean {
+    if (!this.selectedLivreId) {
+      return false;
+    }
+    return this.isBibliothecaire ? !!this.selectedAdherentId : true;
+  }
+
   onSubmit(): void {
-    if (!this.selectedLivreId || !this.selectedAdherentId) {
+    if (!this.peutSoumettre) {
       return;
     }
     this.creer.emit({
-      livreId: this.selectedLivreId,
-      adherentId: this.selectedAdherentId
+      livreId: this.selectedLivreId!,
+      adherentId: this.isBibliothecaire ? this.selectedAdherentId : null
     });
     // Réinitialiser après émission
     this.selectedLivreId = null;

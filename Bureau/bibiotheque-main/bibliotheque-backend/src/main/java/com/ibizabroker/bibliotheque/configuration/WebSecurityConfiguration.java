@@ -44,9 +44,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/authenticate").permitAll()
                 .antMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/api-docs/**").permitAll()
                 // Le BIBLIOTHECAIRE a besoin de lister les adhérents pour pouvoir réserver en
-                // leur nom (formulaire de création de réservation) ; règle placée avant la règle
-                // générale /admin/** (antMatchers utilise la première correspondance).
+                // leur nom (formulaire de création de réservation) ; règles placées avant la règle
+                // générale /admin/** (antMatchers utilise la première correspondance qui matche).
                 .antMatchers(org.springframework.http.HttpMethod.GET, "/admin/users").hasAnyRole("Admin", "BIBLIOTHECAIRE")
+                // Le catalogue des livres doit être consultable par tout utilisateur authentifié :
+                // un ADHERENT comme un BIBLIOTHECAIRE en ont besoin pour choisir quel livre réserver.
+                .antMatchers(org.springframework.http.HttpMethod.GET, "/admin/books").authenticated()
                 .antMatchers("/admin/**").hasRole("Admin")
                 .antMatchers("/api/reservations/**").authenticated()
                 .anyRequest().authenticated()

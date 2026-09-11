@@ -24,13 +24,17 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
         catchError(
             (err:HttpErrorResponse) => {
-                console.log(err.status);
                 if(err.status === 401) {
+                    // Token absent/invalide/expiré : on ne sait plus qui parle, direction connexion.
+                    this.userAuthService.clear();
                     this.router.navigate(['/login']);
-                } else if(err.status === 403) {
-                    this.router.navigate(['/forbidden']);
                 }
-                return throwError("Some thing is wrong");
+                // Pour 403 (et le reste), on ne navigue plus d'office : chaque page affiche
+                // le message renvoyé par le backend (ex: RS-03, RG-03...) à l'endroit concerné,
+                // plutôt que d'éjecter l'utilisateur vers /forbidden pour une action isolée.
+                // On repropage l'erreur d'origine (pas une string) pour que le message du
+                // backend ({ erreur: "..." }) reste exploitable par le service appelant.
+                return throwError(() => err);
             }
         )
     );

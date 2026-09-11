@@ -24,9 +24,15 @@ export class ReservationService {
     );
   }
 
-  // Créer une réservation
-  creerReservation(livreId: number, adherentId: number): Observable<Reservation> {
-    return this.httpClient.post<Reservation>(this.baseURL, { livreId, adherentId }).pipe(
+  // Créer une réservation. adherentId n'est utile que pour un BIBLIOTHECAIRE (RS-02) : pour un
+  // ADHERENT, le champ est ignoré côté backend (RS-04 - l'identité vient du token), on ne l'envoie
+  // donc même pas dans ce cas.
+  creerReservation(livreId: number, adherentId: number | null): Observable<Reservation> {
+    const payload: { livreId: number; adherentId?: number } = { livreId };
+    if (adherentId !== null) {
+      payload.adherentId = adherentId;
+    }
+    return this.httpClient.post<Reservation>(this.baseURL, payload).pipe(
       catchError(this.handleError)
     );
   }
@@ -34,6 +40,13 @@ export class ReservationService {
   // Annuler une réservation
   annulerReservation(id: number): Observable<Reservation> {
     return this.httpClient.patch<Reservation>(`${this.baseURL}/${id}/annuler`, {}).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  // Supprimer une réservation (réservé au BIBLIOTHECAIRE côté backend)
+  supprimerReservation(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.baseURL}/${id}`).pipe(
       catchError(this.handleError)
     );
   }
@@ -54,7 +67,10 @@ export class ReservationService {
       errorMessage = `Erreur réseau : ${error.error.message}`;
     } else {
       // Erreur côté serveur (le backend renvoie { erreur: "..." })
-      if (error.status === 409) {
+      if (error.status === 403) {
+        // Droits insuffisants (RS-02) ou réservation d'un autre adhérent (RS-03)
+        errorMessage = error.error?.erreur || 'Vous n\'avez pas le droit d\'effectuer cette action.';
+      } else if (error.status === 409) {
         // Conflit métier (livre disponible, réservation existante, quota atteint)
         errorMessage = error.error?.erreur || 'Conflit : ' + (error.message || 'Opération refusée');
       } else if (error.status === 400) {

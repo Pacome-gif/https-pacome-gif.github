@@ -12,9 +12,13 @@ export class ReservationsListComponent {
   @Input() loading = false;
   @Input() error: string | null = null;
   @Input() cancelLoading: number | null = null;
+  @Input() deleteLoading: number | null = null;
+  // DELETE /api/reservations/{id} est réservé au BIBLIOTHECAIRE côté backend (RS-02).
+  @Input() isBibliothecaire = false;
 
   @Output() retry = new EventEmitter<void>();
   @Output() annuler = new EventEmitter<Reservation>();
+  @Output() supprimer = new EventEmitter<Reservation>();
 
   peutAnnuler(statut: string): boolean {
     return statut === 'EN_ATTENTE' || statut === 'DISPONIBLE';
@@ -37,5 +41,9 @@ export class ReservationsListComponent {
 
   onAnnuler(reservation: Reservation): void {
     this.annuler.emit(reservation);
+  }
+
+  onSupprimer(reservation: Reservation): void {
+    this.supprimer.emit(reservation);
   }
 }

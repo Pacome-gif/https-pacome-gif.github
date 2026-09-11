@@ -51,6 +51,14 @@
   text-align: right;
 }
 
+/* Groupe de boutons d'action (annuler / supprimer) */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
 /* Badges de statut */
 .badge {
   font-size: 0.75rem;

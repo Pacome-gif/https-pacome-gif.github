@@ -52,16 +52,24 @@
     </div>
     <div class="reservation-field">
       <span class="field-label">{{ 'list.field.action' | translate }}</span>
-      <span class="field-value">
+      <span class="field-value action-buttons">
         <button
           *ngIf="peutAnnuler(reservation.statut)"
           class="btn btn-sm btn-outline-danger"
           (click)="onAnnuler(reservation)"
-          [disabled]="cancelLoading === reservation.id">
+          [disabled]="cancelLoading === reservation.id || deleteLoading === reservation.id">
           <span *ngIf="cancelLoading === reservation.id" class="spinner-border spinner-border-sm me-1"></span>
           {{ 'list.cancel' | translate }}
         </button>
-        <span *ngIf="!peutAnnuler(reservation.statut)" class="text-muted">—</span>
+        <span *ngIf="!peutAnnuler(reservation.statut) && !isBibliothecaire" class="text-muted">—</span>
+        <button
+          *ngIf="isBibliothecaire"
+          class="btn btn-sm btn-outline-secondary"
+          (click)="onSupprimer(reservation)"
+          [disabled]="cancelLoading === reservation.id || deleteLoading === reservation.id">
+          <span *ngIf="deleteLoading === reservation.id" class="spinner-border spinner-border-sm me-1"></span>
+          {{ 'list.delete' | translate }}
+        </button>
       </span>
     </div>
   </div>

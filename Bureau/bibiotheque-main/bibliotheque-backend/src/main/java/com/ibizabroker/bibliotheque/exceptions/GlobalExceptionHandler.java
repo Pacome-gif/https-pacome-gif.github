@@ -2,6 +2,7 @@ package com.ibizabroker.bibliotheque.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -39,6 +40,16 @@ public class GlobalExceptionHandler {
         Map<String, String> error = new HashMap<>();
         error.put("erreur", ex.getMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+    }
+
+    // Gère les refus d'autorisation (RS-02, RS-03) → 403 FORBIDDEN.
+    // À distinguer du 401 (non authentifié), renvoyé en amont par JwtAuthenticationEntryPoint
+    // avant même d'atteindre ce contrôleur, quand aucun token valide n'est fourni.
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<Map<String, String>> handleAccessDenied(AccessDeniedException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("erreur", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
     }
 
     // Gère les ressources non trouvées → 404 NOT FOUND

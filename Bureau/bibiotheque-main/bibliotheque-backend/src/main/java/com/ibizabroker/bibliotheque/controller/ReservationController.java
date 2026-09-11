@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -29,6 +30,8 @@ public class ReservationController {
         @ApiResponse(responseCode = "404", description = "Livre ou adhérent introuvable"),
         @ApiResponse(responseCode = "409", description = "Règle de gestion violée (RG-01, RG-02 ou RG-03)")
     })
+    // RS-02 : réservé aux utilisateurs authentifiés ayant le rôle ADHERENT ou BIBLIOTHECAIRE.
+    @PreAuthorize("hasAnyRole('ADHERENT','BIBLIOTHECAIRE')")
     @PostMapping
     public ResponseEntity<ReservationResponseDTO> creerReservation(
             @Valid @RequestBody ReservationRequestDTO request) {
@@ -41,6 +44,9 @@ public class ReservationController {
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Liste des réservations")
     })
+    // RS-02 / RS-05 : liste restreinte à ses propres réservations pour un ADHERENT (filtrage
+    // appliqué côté service, à partir de l'identité tirée du token).
+    @PreAuthorize("hasAnyRole('ADHERENT','BIBLIOTHECAIRE')")
     @GetMapping
     public ResponseEntity<List<ReservationResponseDTO>> getAllReservations(
             @RequestParam(required = false) String statut,
@@ -55,6 +61,8 @@ public class ReservationController {
         @ApiResponse(responseCode = "200", description = "Réservation trouvée"),
         @ApiResponse(responseCode = "404", description = "Réservation introuvable")
     })
+    // RS-02 / RS-03 : réservé à ses propriétaires pour un ADHERENT (vérifié côté service).
+    @PreAuthorize("hasAnyRole('ADHERENT','BIBLIOTHECAIRE')")
     @GetMapping("/{id}")
     public ResponseEntity<ReservationResponseDTO> getReservationById(@PathVariable Integer id) {
         ReservationResponseDTO response = reservationService.getReservationById(id);
@@ -68,6 +76,8 @@ public class ReservationController {
         @ApiResponse(responseCode = "404", description = "Réservation introuvable"),
         @ApiResponse(responseCode = "409", description = "Règle de gestion violée (RG-05)")
     })
+    // RS-02 / RS-03 : réservé à ses propriétaires pour un ADHERENT (vérifié côté service).
+    @PreAuthorize("hasAnyRole('ADHERENT','BIBLIOTHECAIRE')")
     @PatchMapping("/{id}/annuler")
     public ResponseEntity<ReservationResponseDTO> annulerReservation(@PathVariable Integer id) {
         ReservationResponseDTO response = reservationService.annulerReservation(id);
@@ -80,6 +90,8 @@ public class ReservationController {
         @ApiResponse(responseCode = "204", description = "Réservation supprimée"),
         @ApiResponse(responseCode = "404", description = "Réservation introuvable")
     })
+    // RS-02 : suppression réservée au BIBLIOTHECAIRE, jamais accessible à un ADHERENT.
+    @PreAuthorize("hasRole('BIBLIOTHECAIRE')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> supprimerReservation(@PathVariable Integer id) {
         reservationService.supprimerReservation(id);

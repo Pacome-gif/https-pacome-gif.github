@@ -10,7 +10,9 @@ import com.ibizabroker.bibliotheque.entity.Reservation;
 import com.ibizabroker.bibliotheque.entity.ReservationStatus;
 import com.ibizabroker.bibliotheque.entity.Users;
 import com.ibizabroker.bibliotheque.exceptions.NotFoundException;
+import com.ibizabroker.bibliotheque.security.CurrentUserProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +28,7 @@ public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final BooksRepository booksRepository;
     private final UsersRepository usersRepository;
+    private final CurrentUserProvider currentUserProvider;
 
     private static final int MAX_RESERVATIONS_ACTIVES = 3;
     private static final int DELAI_EXPIRATION_JOURS = 7;
@@ -37,9 +40,20 @@ public class ReservationService {
         Books book = booksRepository.findById(request.getLivreId())
             .orElseThrow(() -> new NotFoundException("Livre non trouvé avec l'ID : " + request.getLivreId()));
 
-        // Vérifier que l'utilisateur existe
-        Users user = usersRepository.findById(request.getAdherentId())
-            .orElseThrow(() -> new NotFoundException("Utilisateur non trouvé avec l'ID : " + request.getAdherentId()));
+        // RS-04 : l'identité de l'adhérent vient du token, jamais du corps de la requête.
+        Users currentUser = currentUserProvider.getCurrentUser();
+        Users user;
+        if (currentUserProvider.isBibliothecaire(currentUser)) {
+            // Le bibliothécaire peut réserver au nom de n'importe quel adhérent, désigné dans le corps.
+            if (request.getAdherentId() == null) {
+                throw new IllegalArgumentException("L'ID de l'adhérent est obligatoire");
+            }
+            user = usersRepository.findById(request.getAdherentId())
+                .orElseThrow(() -> new NotFoundException("Utilisateur non trouvé avec l'ID : " + request.getAdherentId()));
+        } else {
+            // Un ADHERENT ne peut réserver que pour lui-même : adherentId du corps est ignoré.
+            user = currentUser;
+        }
 
         // RG-01 : On ne peut réserver qu'un livre indisponible
         if (book.getNoOfCopies() > 0) {
@@ -82,16 +96,24 @@ public class ReservationService {
     public ReservationResponseDTO getReservationById(Integer id) {
         Reservation reservation = reservationRepository.findById(id)
             .orElseThrow(() -> new NotFoundException("Réservation non trouvée avec l'ID : " + id));
+        assertOwnershipOrBibliothecaire(reservation);
         return toResponseDTO(reservation);
     }
 
     // LISTER TOUTES LES RÉSERVATIONS (avec filtres optionnels) - VERSION CORRIGÉE
     public List<ReservationResponseDTO> getAllReservations(String statut, Integer adherentId) {
+        // RS-05 : un ADHERENT ne voit jamais que ses propres réservations, même s'il tente de
+        // filtrer sur l'ID d'un autre adhérent via le paramètre de requête.
+        Users currentUser = currentUserProvider.getCurrentUser();
+        Integer effectiveAdherentId = currentUserProvider.isBibliothecaire(currentUser)
+            ? adherentId
+            : currentUser.getUserId();
+
         List<Reservation> reservations;
 
-        if (statut != null && adherentId != null) {
+        if (statut != null && effectiveAdherentId != null) {
             // Filtrer par statut ET adhérent
-            Users user = usersRepository.findById(adherentId)
+            Users user = usersRepository.findById(effectiveAdherentId)
                 .orElseThrow(() -> new NotFoundException("Utilisateur non trouvé"));
             ReservationStatus statusEnum = ReservationStatus.valueOf(statut.toUpperCase());
             // Récupérer toutes les réservations de l'utilisateur puis filtrer par statut
@@ -100,16 +122,16 @@ public class ReservationService {
                 .filter(r -> r.getStatut() == statusEnum)
                 .collect(Collectors.toList());
         } else if (statut != null) {
-            // Filtrer par statut uniquement
+            // Filtrer par statut uniquement (uniquement possible pour un BIBLIOTHECAIRE)
             ReservationStatus statusEnum = ReservationStatus.valueOf(statut.toUpperCase());
             reservations = reservationRepository.findByStatut(statusEnum);
-        } else if (adherentId != null) {
+        } else if (effectiveAdherentId != null) {
             // Filtrer par adhérent uniquement
-            Users user = usersRepository.findById(adherentId)
+            Users user = usersRepository.findById(effectiveAdherentId)
                 .orElseThrow(() -> new NotFoundException("Utilisateur non trouvé"));
             reservations = reservationRepository.findByUser(user);
         } else {
-            // Tout lister
+            // Tout lister (uniquement possible pour un BIBLIOTHECAIRE)
             reservations = reservationRepository.findAll();
         }
 
@@ -123,6 +145,8 @@ public class ReservationService {
     public ReservationResponseDTO annulerReservation(Integer id) {
         Reservation reservation = reservationRepository.findById(id)
             .orElseThrow(() -> new NotFoundException("Réservation non trouvée avec l'ID : " + id));
+
+        assertOwnershipOrBibliothecaire(reservation);
 
         // RG-05 : Une réservation ne peut être annulée que si son statut est EN_ATTENTE ou DISPONIBLE
         if (reservation.getStatut() != ReservationStatus.EN_ATTENTE && 
@@ -142,6 +166,18 @@ public class ReservationService {
         Reservation reservation = reservationRepository.findById(id)
             .orElseThrow(() -> new NotFoundException("Réservation non trouvée avec l'ID : " + id));
         reservationRepository.delete(reservation);
+    }
+
+    // RS-03 : un ADHERENT ne peut consulter/annuler que ses propres réservations.
+    // Un BIBLIOTHECAIRE passe toujours ce contrôle.
+    private void assertOwnershipOrBibliothecaire(Reservation reservation) {
+        Users currentUser = currentUserProvider.getCurrentUser();
+        if (currentUserProvider.isBibliothecaire(currentUser)) {
+            return;
+        }
+        if (!reservation.getUser().getUserId().equals(currentUser.getUserId())) {
+            throw new AccessDeniedException("Vous n'avez pas accès à la réservation d'un autre adhérent.");
+        }
     }
 
     // MÉTHODE UTILE : Convertir entité → DTO

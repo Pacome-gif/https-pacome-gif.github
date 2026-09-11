@@ -28,6 +28,23 @@ import { ReservationsComponent } from './reservations/reservations.component';
 import { ReservationsListComponent } from './reservations/reservations-list/reservations-list.component';
 import { ReservationsFormComponent } from './reservations/reservations-form/reservations-form.component';
 import { TranslatePipe } from './_i18n/translate.pipe';
+import {
+  LucideAngularModule,
+  BookOpen,
+  Plus,
+  Users,
+  UserPlus,
+  Undo2,
+  CalendarCheck,
+  LogIn,
+  LogOut,
+  Pencil,
+  Eye,
+  Trash2,
+  BookPlus,
+  ShieldAlert,
+  TriangleAlert,
+} from 'lucide-angular';
 
 @NgModule({
   declarations: [
@@ -57,7 +74,23 @@ import { TranslatePipe } from './_i18n/translate.pipe';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    LucideAngularModule.pick({
+      BookOpen,
+      Plus,
+      Users,
+      UserPlus,
+      Undo2,
+      CalendarCheck,
+      LogIn,
+      LogOut,
+      Pencil,
+      Eye,
+      Trash2,
+      BookPlus,
+      ShieldAlert,
+      TriangleAlert,
+    }),
   ],
   providers: [
     AuthGuard,

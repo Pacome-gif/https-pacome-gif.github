@@ -1,27 +1,33 @@
-<div class="container col-md-6 offset-mid-3">
-    <h3> Edit Book </h3>
-    <form (ngSubmit) = "onSubmit()">
-
-        <div class="form-group">
-            <label style="margin-bottom: 10px"> Book Name </label>
-            <input type="text" class="form-control" style="margin-bottom: 10px" id="bookName" [(ngModel)] = "book.bookName" name="bookName">
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+      <div class="card">
+        <div class="card-header card-header-navy text-white text-center icon-header">
+          <lucide-icon name="pencil" class="w-5 h-5"></lucide-icon>
+          <h4 class="mb-0">Modifier un livre</h4>
         </div>
-
-        <div class="form-group">
-            <label style="margin-bottom: 10px"> Author </label>
-            <input type="text" class="form-control" style="margin-bottom: 10px" id="bookAuthor" [(ngModel)] = "book.bookAuthor" name="bookAuthor">
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" autocomplete="off">
+            <div class="mb-3">
+              <label class="form-label">Nom du livre</label>
+              <input type="text" class="du-input du-input-bordered w-full" id="bookName" [(ngModel)]="book.bookName" name="bookName" placeholder="Entrez le nom du livre">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Auteur</label>
+              <input type="text" class="du-input du-input-bordered w-full" id="bookAuthor" [(ngModel)]="book.bookAuthor" name="bookAuthor" placeholder="Entrez l'auteur">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Genre</label>
+              <input type="text" class="du-input du-input-bordered w-full" id="bookGenre" [(ngModel)]="book.bookGenre" name="bookGenre" placeholder="Entrez le genre">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Nombre de copies</label>
+              <input type="number" class="du-input du-input-bordered w-full" id="noOfCopies" [(ngModel)]="book.noOfCopies" name="noOfCopies" placeholder="Nombre de copies">
+            </div>
+            <button class="du-btn du-btn-primary w-full" type="submit">Enregistrer</button>
+          </form>
         </div>
-
-        <div class="form-group">
-            <label style="margin-bottom: 10px"> Genre </label>
-            <input type="text" class="form-control" style="margin-bottom: 10px" id="bookGenre" [(ngModel)] = "book.bookGenre" name="bookGenre">
-        </div>
-
-        <div class="form-group">
-            <label style="margin-bottom: 10px"> Number of Copies </label>
-            <input type="text" class="form-control" style="margin-bottom: 10px" id="noOfCopies" [(ngModel)] = "book.noOfCopies" name="noOfCopies">
-        </div>
-
-        <button class="btn btn-success" type="submit"> Submit </button>
-    </form>
+      </div>
+    </div>
+  </div>
 </div>

@@ -200,6 +200,14 @@ h2 {
   background: linear-gradient(135deg, #14315c, #1c4587) !important;
 }
 
+/* En-tête de carte avec icône + titre alignés (formulaires : create/update book/user, login). */
+.icon-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
 /* Tables sur mobile - mode carte */
 @media (max-width: 767px) {
   .table thead {

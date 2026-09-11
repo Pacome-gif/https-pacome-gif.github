@@ -38,8 +38,10 @@ public class AdminController {
         return user;
     }
 
+    // Ouvert aussi au BIBLIOTHECAIRE : le formulaire de création de réservation a besoin de
+    // lister les adhérents pour pouvoir réserver au nom de n'importe qui (voir ReservationController).
     @GetMapping("/users")
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasAnyRole('Admin', 'BIBLIOTHECAIRE')")
     public List<Users> getAllUsers() {
         return usersRepository.findAll();
     }

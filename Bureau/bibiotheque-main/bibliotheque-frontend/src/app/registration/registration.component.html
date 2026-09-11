@@ -2,32 +2,33 @@
   <div class="row justify-content-center">
     <div class="col-12 col-sm-10 col-md-8 col-lg-6">
       <div class="card">
-        <div class="card-header card-header-navy text-white text-center">
+        <div class="card-header card-header-navy text-white text-center icon-header">
+          <lucide-icon name="user-plus" class="w-5 h-5"></lucide-icon>
           <h4 class="mb-0">Ajouter un utilisateur</h4>
         </div>
         <div class="card-body">
           <form (ngSubmit)="onSubmit()" autocomplete="off">
             <div class="mb-3">
               <label class="form-label">Nom</label>
-              <input type="text" class="form-control" id="name" [(ngModel)]="user.name" name="name" placeholder="Entrez le nom">
+              <input type="text" class="du-input du-input-bordered w-full" id="name" [(ngModel)]="user.name" name="name" placeholder="Entrez le nom">
             </div>
             <div class="mb-3">
               <label class="form-label">Nom d'utilisateur</label>
-              <input type="text" class="form-control" id="username" [(ngModel)]="user.username" name="username" placeholder="Entrez le nom d'utilisateur">
+              <input type="text" class="du-input du-input-bordered w-full" id="username" [(ngModel)]="user.username" name="username" placeholder="Entrez le nom d'utilisateur">
             </div>
             <div class="mb-3">
               <label class="form-label">Mot de passe</label>
-              <input type="password" class="form-control" id="password" [(ngModel)]="user.password" name="password" placeholder="Entrez le mot de passe">
+              <input type="password" class="du-input du-input-bordered w-full" id="password" [(ngModel)]="user.password" name="password" placeholder="Entrez le mot de passe">
             </div>
             <div class="mb-3">
               <label class="form-label">Rôle</label>
-              <select class="form-select" id="role" [(ngModel)]="user.role[0].roleName" name="role">
+              <select class="du-select du-select-bordered w-full" id="role" [(ngModel)]="user.role[0].roleName" name="role">
                 <option value="ADHERENT">Adhérent</option>
                 <option value="BIBLIOTHECAIRE">Bibliothécaire</option>
                 <option value="Admin">Admin</option>
               </select>
             </div>
-            <button class="btn btn-success w-100" type="submit">Ajouter</button>
+            <button class="du-btn du-btn-primary w-full" type="submit">Ajouter</button>
           </form>
         </div>
       </div>

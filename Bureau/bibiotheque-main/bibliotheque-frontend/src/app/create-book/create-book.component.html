@@ -2,28 +2,29 @@
   <div class="row justify-content-center">
     <div class="col-12 col-sm-10 col-md-8 col-lg-6">
       <div class="card">
-        <div class="card-header card-header-navy text-white text-center">
+        <div class="card-header card-header-navy text-white text-center icon-header">
+          <lucide-icon name="book-plus" class="w-5 h-5"></lucide-icon>
           <h4 class="mb-0">Ajouter un livre</h4>
         </div>
         <div class="card-body">
           <form (ngSubmit)="onSubmit()" autocomplete="off">
             <div class="mb-3">
               <label class="form-label">Nom du livre</label>
-              <input type="text" class="form-control" id="bookName" [(ngModel)]="book.bookName" name="bookName" placeholder="Entrez le nom du livre">
+              <input type="text" class="du-input du-input-bordered w-full" id="bookName" [(ngModel)]="book.bookName" name="bookName" placeholder="Entrez le nom du livre">
             </div>
             <div class="mb-3">
               <label class="form-label">Auteur</label>
-              <input type="text" class="form-control" id="bookAuthor" [(ngModel)]="book.bookAuthor" name="bookAuthor" placeholder="Entrez l'auteur">
+              <input type="text" class="du-input du-input-bordered w-full" id="bookAuthor" [(ngModel)]="book.bookAuthor" name="bookAuthor" placeholder="Entrez l'auteur">
             </div>
             <div class="mb-3">
               <label class="form-label">Genre</label>
-              <input type="text" class="form-control" id="bookGenre" [(ngModel)]="book.bookGenre" name="bookGenre" placeholder="Entrez le genre">
+              <input type="text" class="du-input du-input-bordered w-full" id="bookGenre" [(ngModel)]="book.bookGenre" name="bookGenre" placeholder="Entrez le genre">
             </div>
             <div class="mb-3">
               <label class="form-label">Nombre de copies</label>
-              <input type="number" class="form-control" id="noOfCopies" [(ngModel)]="book.noOfCopies" name="noOfCopies" placeholder="Nombre de copies">
+              <input type="number" class="du-input du-input-bordered w-full" id="noOfCopies" [(ngModel)]="book.noOfCopies" name="noOfCopies" placeholder="Nombre de copies">
             </div>
-            <button class="btn btn-success w-100" type="submit">Ajouter</button>
+            <button class="du-btn du-btn-primary w-full" type="submit">Ajouter</button>
           </form>
         </div>
       </div>

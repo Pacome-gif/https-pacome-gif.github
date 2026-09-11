@@ -1,28 +1,42 @@
 /* Page d'accueil responsive */
 .home {
-  margin-top: 5rem;
-  font-size: 2rem;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
   text-align: center;
   padding: 1rem;
 }
 
+.home-icon {
+  color: #14315c;
+  opacity: 0.85;
+}
+
+.home-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #14315c;
+  margin: 0;
+}
+
 @media (min-width: 576px) {
   .home {
-    margin-top: 8rem;
-    font-size: 3rem;
+    margin-top: 6rem;
+  }
+
+  .home-text {
+    font-size: 2rem;
   }
 }
 
 @media (min-width: 768px) {
   .home {
-    margin-top: 10rem;
-    font-size: 4rem;
+    margin-top: 7rem;
   }
-}
 
-@media (min-width: 992px) {
-  .home {
-    margin-top: 12rem;
-    font-size: 5rem;
+  .home-text {
+    font-size: 2.5rem;
   }
 }

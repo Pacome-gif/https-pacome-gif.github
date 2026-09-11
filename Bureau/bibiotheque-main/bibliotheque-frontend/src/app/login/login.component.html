@@ -2,21 +2,22 @@
   <div class="row justify-content-center">
     <div class="col-12 col-sm-8 col-md-6 col-lg-4">
       <div class="card">
-        <div class="card-header bg-primary text-white text-center">
+        <div class="card-header card-header-navy text-white text-center icon-header">
+          <lucide-icon name="log-in" class="w-5 h-5"></lucide-icon>
           <h4 class="mb-0">Connexion</h4>
         </div>
         <div class="card-body">
           <form autocomplete="off" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
             <div class="mb-3">
               <label class="form-label">Nom d'utilisateur</label>
-              <input type="text" name="username" ngModel class="form-control" id="loginUsername" placeholder="Entrez votre nom d'utilisateur">
+              <input type="text" name="username" ngModel class="du-input du-input-bordered w-full" id="loginUsername" placeholder="Entrez votre nom d'utilisateur">
               <div class="form-text">Nom d'utilisateur fourni par l'administrateur.</div>
             </div>
             <div class="mb-3">
               <label class="form-label">Mot de passe</label>
-              <input type="password" name="password" ngModel class="form-control" id="loginPassword" placeholder="Entrez votre mot de passe">
+              <input type="password" name="password" ngModel class="du-input du-input-bordered w-full" id="loginPassword" placeholder="Entrez votre mot de passe">
             </div>
-            <button type="submit" class="btn btn-primary w-100">Se connecter</button>
+            <button type="submit" class="du-btn du-btn-primary w-full">Se connecter</button>
           </form>
         </div>
       </div>

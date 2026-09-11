@@ -23,11 +23,23 @@ header {
   font-size: 1.1rem;
   letter-spacing: 0.5px;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @media (min-width: 768px) {
   .brand-title {
     font-size: 1.5rem;
+  }
+}
+
+/* .top-actions passe en position absolue à partir de 576px (règle plus bas) : le titre garde
+   donc une marge réservée de chaque côté à cette largeur pour ne jamais passer sous lui, même
+   si le nom affiché (adhérent/bibliothécaire) est long. */
+@media (min-width: 576px) {
+  .brand-title {
+    max-width: calc(100% - 340px);
   }
 }
 

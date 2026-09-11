@@ -1,22 +1,22 @@
-<h2>Borrow history of {{ user.name }}</h2>
-<table class="table table-info table-striped">
-    <thead>
+<div class="container mt-4">
+  <h2 class="page-title"><lucide-icon name="users" class="w-6 h-6"></lucide-icon> Historique d'emprunt de {{ user.name }}</h2>
+  <div class="table-responsive-wrapper">
+    <table class="table table-success table-striped">
+      <thead>
         <tr>
-            <th> Book ID </th>
-            <th> Issue Date </th>
-            <th> Return Date </th>
+          <th>ID Livre</th>
+          <th>Date d'emprunt</th>
+          <th>Date de retour</th>
         </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
         <tr *ngFor="let borrower of borrow">
-            <td> {{ borrower.bookId }} </td>
-            <td> {{ borrower.issueDate }} </td>
-            <div *ngIf="borrower.returnDate != null">
-                <td> {{ borrower.returnDate }} </td>
-            </div>
-            <div *ngIf="borrower.returnDate === null">
-                <td> Book not returned yet </td>
-            </div>
+          <td>{{ borrower.bookId }}</td>
+          <td>{{ borrower.issueDate }}</td>
+          <td *ngIf="borrower.returnDate != null">{{ borrower.returnDate }}</td>
+          <td *ngIf="borrower.returnDate === null">Livre non retourné</td>
         </tr>
-    </tbody>
-</table>
+      </tbody>
+    </table>
+  </div>
+</div>

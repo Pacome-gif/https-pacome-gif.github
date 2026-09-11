@@ -3,6 +3,14 @@ module.exports = {
   content: [
     "./src/**/*.{html,ts}",
   ],
+  // NOTE : un préfixe Tailwind racine (ex. `prefix: 'tw-'`) a été testé pour éliminer aussi les
+  // collisions de noms entre utilitaires Tailwind et Bootstrap (ex. `shadow-sm`, `flex`, `mt-4`
+  // existent dans les deux). Retiré : combiné à `daisyui.prefix`, il empêche daisyUI de générer
+  // la moindre classe de composant (du-btn, du-input...), vérifié en build. Les utilitaires
+  // Tailwind restent donc sans préfixe ; en pratique Bootstrap protège déjà ses propres
+  // utilitaires via `!important`, donc l'existant ne casse pas — seul un nom d'utilitaire
+  // Tailwind volontairement identique à un utilitaire Bootstrap serait sans effet (à éviter
+  // au cas par cas plutôt que résolu structurellement).
   corePlugins: {
     // Bootstrap reste responsable des styles de base : on ne veut pas que le reset
     // Tailwind (Preflight) réécrive les styles d'éléments HTML natifs déjà gérés par lui.

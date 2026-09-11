@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <h2>Liste des Livres</h2>
+  <h2 class="page-title"><lucide-icon name="book-open" class="w-6 h-6"></lucide-icon> Liste des Livres</h2>
   <div class="table-responsive-wrapper">
     <table class="table table-success table-striped">
       <thead>
@@ -20,9 +20,15 @@
           <td data-label="Genre">{{ book.bookGenre }}</td>
           <td data-label="Copies">{{ book.noOfCopies }}</td>
           <td data-label="Actions">
-            <button (click)="bookDetails(book.bookId)" class="btn btn-success btn-sm me-1">Voir</button>
-            <button (click)="updateBook(book.bookId)" class="btn btn-info btn-sm me-1">Modifier</button>
-            <button (click)="deleteBook(book.bookId)" class="btn btn-danger btn-sm">Supprimer</button>
+            <button (click)="bookDetails(book.bookId)" class="btn btn-success btn-sm me-1 icon-btn">
+              <lucide-icon name="eye" class="w-4 h-4"></lucide-icon> Voir
+            </button>
+            <button (click)="updateBook(book.bookId)" class="btn btn-info btn-sm me-1 icon-btn">
+              <lucide-icon name="pencil" class="w-4 h-4"></lucide-icon> Modifier
+            </button>
+            <button (click)="deleteBook(book.bookId)" class="btn btn-danger btn-sm icon-btn">
+              <lucide-icon name="trash-2" class="w-4 h-4"></lucide-icon> Supprimer
+            </button>
           </td>
         </tr>
       </tbody>

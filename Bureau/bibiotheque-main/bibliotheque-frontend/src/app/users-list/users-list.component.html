@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <h2>Liste des Utilisateurs</h2>
+  <h2 class="page-title"><lucide-icon name="users" class="w-6 h-6"></lucide-icon> Liste des Utilisateurs</h2>
   <div class="table-responsive-wrapper">
     <table class="table table-success table-striped">
       <thead>
@@ -19,9 +19,13 @@
           <td data-label="Rôle">{{ user.role?.[0]?.roleName || '—' }}</td>
           <td data-label="Actions">
             <div *ngIf="user.role?.[0]?.roleName === 'User'">
-              <button (click)="userDetails(user.userId)" class="btn btn-success btn-sm me-1">Voir</button>
+              <button (click)="userDetails(user.userId)" class="btn btn-success btn-sm me-1 icon-btn">
+                <lucide-icon name="eye" class="w-4 h-4"></lucide-icon> Voir
+              </button>
             </div>
-            <button (click)="updateUser(user.userId)" class="btn btn-info btn-sm">Modifier</button>
+            <button (click)="updateUser(user.userId)" class="btn btn-info btn-sm icon-btn">
+              <lucide-icon name="pencil" class="w-4 h-4"></lucide-icon> Modifier
+            </button>
           </td>
         </tr>
       </tbody>

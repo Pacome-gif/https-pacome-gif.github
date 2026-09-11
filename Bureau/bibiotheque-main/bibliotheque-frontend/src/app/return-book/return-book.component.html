@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <h2>Livres à retourner</h2>
+  <h2 class="page-title"><lucide-icon name="undo-2" class="w-6 h-6"></lucide-icon> Livres à retourner</h2>
   <div class="table-responsive-wrapper">
     <table class="table table-success table-striped">
       <thead>
@@ -19,7 +19,9 @@
           <td data-label="Date échéance">{{ b.dueDate }}</td>
           <td data-label="Actions">
             <div *ngIf="b.returnDate === null">
-              <button (click)="returnBook(b.borrowId)" class="btn btn-success btn-sm">Retourner</button>
+              <button (click)="returnBook(b.borrowId)" class="btn btn-success btn-sm icon-btn">
+                <lucide-icon name="undo-2" class="w-4 h-4"></lucide-icon> Retourner
+              </button>
             </div>
           </td>
         </tr>

@@ -27,8 +27,10 @@ export class LoginComponent implements OnInit {
         this.userAuthSerivce.setUserId(response.user.userId);
         this.userAuthSerivce.setName(response.user.name);
 
-        const role = response.user.role[0].roleName;
-        if(role === 'Admin') {
+        const roles: string[] = response.user.role.map((r: any) => r.roleName);
+        if (roles.includes('ADHERENT') || roles.includes('BIBLIOTHECAIRE')) {
+          this.router.navigate(['/reservations']);
+        } else if (roles.includes('Admin')) {
           this.router.navigate(['/books']);
         } else {
           this.router.navigate(['/borrow-book']) //update later

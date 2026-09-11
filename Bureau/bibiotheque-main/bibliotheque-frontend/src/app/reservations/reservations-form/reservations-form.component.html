@@ -9,7 +9,7 @@
         <label for="livreSelect" class="form-label">{{ 'form.book' | translate }}</label>
         <select
           id="livreSelect"
-          class="form-select"
+          class="du-select du-select-bordered w-full"
           [(ngModel)]="selectedLivreId"
           [class.is-invalid]="formError && !selectedLivreId">
           <option [ngValue]="null" disabled>{{ 'form.bookPlaceholder' | translate }}</option>
@@ -25,7 +25,7 @@
         <label for="adherentSelect" class="form-label">{{ 'form.member' | translate }}</label>
         <select
           id="adherentSelect"
-          class="form-select"
+          class="du-select du-select-bordered w-full"
           [(ngModel)]="selectedAdherentId"
           [class.is-invalid]="formError && !selectedAdherentId">
           <option [ngValue]="null" disabled>{{ 'form.memberPlaceholder' | translate }}</option>
@@ -43,7 +43,7 @@
       <!-- Bouton de soumission -->
       <div class="col-12 col-md-2 d-flex align-items-end">
         <button
-          class="btn btn-navy w-100"
+          class="du-btn du-btn-primary w-full"
           (click)="onSubmit()"
           [disabled]="!peutSoumettre">
           {{ 'form.submit' | translate }}
@@ -52,10 +52,11 @@
     </div>
 
     <!-- Messages de retour -->
-    <div *ngIf="formError" class="alert alert-danger mt-3" role="alert">
-      <strong>{{ 'form.errorPrefix' | translate }}</strong> {{ formError }}
+    <div *ngIf="formError" class="du-alert du-alert-error mt-3" role="alert">
+      <lucide-icon name="triangle-alert" class="w-5 h-5"></lucide-icon>
+      <span><strong>{{ 'form.errorPrefix' | translate }}</strong> {{ formError }}</span>
     </div>
-    <div *ngIf="formSuccess" class="alert alert-success mt-3" role="alert">
+    <div *ngIf="formSuccess" class="du-alert du-alert-success mt-3" role="alert">
       <strong>{{ 'form.successPrefix' | translate }}</strong> {{ 'form.successMessage' | translate }}
     </div>
   </div>

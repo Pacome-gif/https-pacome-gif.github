@@ -8,9 +8,9 @@
 
 <!-- ÉTAT : ERREUR -->
 <div *ngIf="error && !loading" class="empty-state-error" role="alert">
-  <h5>⚠️ {{ 'list.errorTitle' | translate }}</h5>
+  <h5 class="icon-header"><lucide-icon name="triangle-alert" class="w-5 h-5"></lucide-icon> {{ 'list.errorTitle' | translate }}</h5>
   <p>{{ error }}</p>
-  <button class="btn btn-navy btn-sm" (click)="onRetry()">{{ 'list.retry' | translate }}</button>
+  <button class="du-btn du-btn-primary du-btn-sm" (click)="onRetry()">{{ 'list.retry' | translate }}</button>
 </div>
 
 <!-- ÉTAT : LISTE VIDE -->
@@ -55,19 +55,21 @@
       <span class="field-value action-buttons">
         <button
           *ngIf="peutAnnuler(reservation.statut)"
-          class="btn btn-sm btn-outline-danger"
+          class="du-btn du-btn-sm du-btn-outline du-btn-error icon-btn"
           (click)="onAnnuler(reservation)"
           [disabled]="cancelLoading === reservation.id || deleteLoading === reservation.id">
           <span *ngIf="cancelLoading === reservation.id" class="spinner-border spinner-border-sm me-1"></span>
+          <lucide-icon *ngIf="cancelLoading !== reservation.id" name="undo-2" class="w-4 h-4"></lucide-icon>
           {{ 'list.cancel' | translate }}
         </button>
         <span *ngIf="!peutAnnuler(reservation.statut) && !isBibliothecaire" class="text-muted">—</span>
         <button
           *ngIf="isBibliothecaire"
-          class="btn btn-sm btn-outline-secondary"
+          class="du-btn du-btn-sm du-btn-outline icon-btn"
           (click)="onSupprimer(reservation)"
           [disabled]="cancelLoading === reservation.id || deleteLoading === reservation.id">
           <span *ngIf="deleteLoading === reservation.id" class="spinner-border spinner-border-sm me-1"></span>
+          <lucide-icon *ngIf="deleteLoading !== reservation.id" name="trash-2" class="w-4 h-4"></lucide-icon>
           {{ 'list.delete' | translate }}
         </button>
       </span>

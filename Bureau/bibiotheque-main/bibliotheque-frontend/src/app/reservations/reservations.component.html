@@ -1,5 +1,5 @@
 <div class="container mt-4 reservations-page">
-  <h2 class="mb-4" style="color: #14315c;">{{ 'reservations.title' | translate }}</h2>
+  <h2 class="mb-4 page-title"><lucide-icon name="calendar-check" class="w-6 h-6"></lucide-icon> {{ 'reservations.title' | translate }}</h2>
 
   <!-- COMPOSANT FORMULAIRE -->
   <app-reservations-form
@@ -19,7 +19,7 @@
           <label class="form-label fw-bold">{{ 'reservations.filterLabel' | translate }}</label>
         </div>
         <div class="col-auto">
-          <select class="form-select" [(ngModel)]="filtreStatut" (change)="onFiltreChange()">
+          <select class="du-select du-select-bordered" [(ngModel)]="filtreStatut" (change)="onFiltreChange()">
             <option value="TOUS">{{ 'status.TOUS' | translate }}</option>
             <option value="EN_ATTENTE">{{ 'status.EN_ATTENTE' | translate }}</option>
             <option value="DISPONIBLE">{{ 'status.DISPONIBLE' | translate }}</option>

@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    container_name: bibliotheque-postgres
+    environment:
+      POSTGRES_DB: bibliotheque
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: mysql
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - bibliotheque-network
+
+  adminer:
+    image: adminer
+    container_name: bibliotheque-adminer
+    ports:
+      - "8081:8080"
+    networks:
+      - bibliotheque-network
+
+volumes:
+  postgres_data:
+
+networks:
+  bibliotheque-network:

@@ -1,0 +1,132 @@
+-- Insertion de données de test
+-- Les données sont insérées seulement si elles n'existent pas déjà
+
+-- ==========================================
+-- ROLES
+-- ==========================================
+
+DO $$
+BEGIN
+    -- Rôle Admin
+    IF NOT EXISTS (SELECT 1 FROM "role" WHERE role_name = 'Admin') THEN
+        INSERT INTO "role" (role_name) VALUES ('Admin');
+    END IF;
+
+    -- Rôle User
+    IF NOT EXISTS (SELECT 1 FROM "role" WHERE role_name = 'User') THEN
+        INSERT INTO "role" (role_name) VALUES ('User');
+    END IF;
+END $$;
+
+-- ==========================================
+-- UTILISATEURS
+-- ==========================================
+-- Mot de passe pour les deux utilisateurs : admin123
+-- Hash BCrypt : $2a$10$/M/FsgGmSFAyNMoFZdiypuhdTYx5UoPq.EXt1UYRPsbsX6aoUPUhy
+
+DO $$
+DECLARE
+    admin_role_id INT;
+    user_role_id INT;
+BEGIN
+    -- Récupérer les IDs des rôles
+    SELECT role_id INTO admin_role_id FROM "role" WHERE role_name = 'Admin';
+    SELECT role_id INTO user_role_id FROM "role" WHERE role_name = 'User';
+
+    -- Utilisateur A1
+    IF NOT EXISTS (SELECT 1 FROM "users" WHERE username = 'A1') THEN
+        INSERT INTO "users" (username, name, password) 
+        VALUES ('A1', 'A1', '$2a$10$/M/FsgGmSFAyNMoFZdiypuhdTYx5UoPq.EXt1UYRPsbsX6aoUPUhy');
+        
+        INSERT INTO user_role (user_id, role_id) 
+        SELECT user_id, user_role_id FROM "users" WHERE username = 'A1';
+    END IF;
+
+    -- Utilisateur A2
+    IF NOT EXISTS (SELECT 1 FROM "users" WHERE username = 'A2') THEN
+        INSERT INTO "users" (username, name, password) 
+        VALUES ('A2', 'A2', '$2a$10$/M/FsgGmSFAyNMoFZdiypuhdTYx5UoPq.EXt1UYRPsbsX6aoUPUhy');
+        
+        INSERT INTO user_role (user_id, role_id) 
+        SELECT user_id, user_role_id FROM "users" WHERE username = 'A2';
+    END IF;
+END $$;
+
+-- ==========================================
+-- LIVRES
+-- ==========================================
+
+DO $$
+BEGIN
+    -- L1
+    IF NOT EXISTS (SELECT 1 FROM "Books" WHERE book_name = 'L1 - Le Petit Prince') THEN
+        INSERT INTO "Books" (book_name, book_author, book_genre, no_of_copies)
+        VALUES ('L1 - Le Petit Prince', 'Antoine de Saint-Exupéry', 'Conte', 3);
+    END IF;
+
+    -- L2
+    IF NOT EXISTS (SELECT 1 FROM "Books" WHERE book_name = 'L2 - L''Étranger') THEN
+        INSERT INTO "Books" (book_name, book_author, book_genre, no_of_copies)
+        VALUES ('L2 - L''Étranger', 'Albert Camus', 'Roman', 2);
+    END IF;
+
+    -- L3
+    IF NOT EXISTS (SELECT 1 FROM "Books" WHERE book_name = 'L3 - Les Misérables') THEN
+        INSERT INTO "Books" (book_name, book_author, book_genre, no_of_copies)
+        VALUES ('L3 - Les Misérables', 'Victor Hugo', 'Roman', 4);
+    END IF;
+
+    -- L4
+    IF NOT EXISTS (SELECT 1 FROM "Books" WHERE book_name = 'L4 - Le Rouge et le Noir') THEN
+        INSERT INTO "Books" (book_name, book_author, book_genre, no_of_copies)
+        VALUES ('L4 - Le Rouge et le Noir', 'Stendhal', 'Roman', 2);
+    END IF;
+
+    -- L5
+    IF NOT EXISTS (SELECT 1 FROM "Books" WHERE book_name = 'L5 - Madame Bovary') THEN
+        INSERT INTO "Books" (book_name, book_author, book_genre, no_of_copies)
+        VALUES ('L5 - Madame Bovary', 'Gustave Flaubert', 'Roman', 3);
+    END IF;
+
+    -- L6
+    IF NOT EXISTS (SELECT 1 FROM "Books" WHERE book_name = 'L6 - Germinal') THEN
+        INSERT INTO "Books" (book_name, book_author, book_genre, no_of_copies)
+        VALUES ('L6 - Germinal', 'Émile Zola', 'Roman', 2);
+    END IF;
+
+    -- L7
+    IF NOT EXISTS (SELECT 1 FROM "Books" WHERE book_name = 'L7 - Le Père Goriot') THEN
+        INSERT INTO "Books" (book_name, book_author, book_genre, no_of_copies)
+        VALUES ('L7 - Le Père Goriot', 'Honoré de Balzac', 'Roman', 3);
+    END IF;
+
+    -- L8
+    IF NOT EXISTS (SELECT 1 FROM "Books" WHERE book_name = 'L8 - Candide') THEN
+        INSERT INTO "Books" (book_name, book_author, book_genre, no_of_copies)
+        VALUES ('L8 - Candide', 'Voltaire', 'Conte philosophique', 2);
+    END IF;
+
+    -- L9
+    IF NOT EXISTS (SELECT 1 FROM "Books" WHERE book_name = 'L9 - Les Fleurs du Mal') THEN
+        INSERT INTO "Books" (book_name, book_author, book_genre, no_of_copies)
+        VALUES ('L9 - Les Fleurs du Mal', 'Charles Baudelaire', 'Poésie', 4);
+    END IF;
+
+    -- L10
+    IF NOT EXISTS (SELECT 1 FROM "Books" WHERE book_name = 'L10 - L''Assommoir') THEN
+        INSERT INTO "Books" (book_name, book_author, book_genre, no_of_copies)
+        VALUES ('L10 - L''Assommoir', 'Émile Zola', 'Roman', 2);
+    END IF;
+
+    -- L11
+    IF NOT EXISTS (SELECT 1 FROM "Books" WHERE book_name = 'L11 - Une Vie') THEN
+        INSERT INTO "Books" (book_name, book_author, book_genre, no_of_copies)
+        VALUES ('L11 - Une Vie', 'Guy de Maupassant', 'Roman', 3);
+    END IF;
+
+    -- L12
+    IF NOT EXISTS (SELECT 1 FROM "Books" WHERE book_name = 'L12 - Bel-Ami') THEN
+        INSERT INTO "Books" (book_name, book_author, book_genre, no_of_copies)
+        VALUES ('L12 - Bel-Ami', 'Guy de Maupassant', 'Roman', 2);
+    END IF;
+END $$;

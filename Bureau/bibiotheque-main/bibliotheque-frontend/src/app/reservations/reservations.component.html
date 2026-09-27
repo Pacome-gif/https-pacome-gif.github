@@ -1,0 +1,47 @@
+<div class="container mt-4 reservations-page">
+  <h2 class="mb-4 page-title"><lucide-icon name="calendar-check" class="w-6 h-6"></lucide-icon> {{ 'reservations.title' | translate }}</h2>
+
+  <!-- COMPOSANT FORMULAIRE -->
+  <app-reservations-form
+    [books]="books"
+    [users]="users"
+    [formError]="formError"
+    [formSuccess]="formSuccess"
+    [isBibliothecaire]="isBibliothecaire"
+    (creer)="onCreerReservation($event)">
+  </app-reservations-form>
+
+  <!-- FILTRE PAR STATUT -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="row align-items-center">
+        <div class="col-auto">
+          <label class="form-label fw-bold">{{ 'reservations.filterLabel' | translate }}</label>
+        </div>
+        <div class="col-auto">
+          <select class="du-select du-select-bordered" [(ngModel)]="filtreStatut" (change)="onFiltreChange()">
+            <option value="TOUS">{{ 'status.TOUS' | translate }}</option>
+            <option value="EN_ATTENTE">{{ 'status.EN_ATTENTE' | translate }}</option>
+            <option value="DISPONIBLE">{{ 'status.DISPONIBLE' | translate }}</option>
+            <option value="ANNULEE">{{ 'status.ANNULEE' | translate }}</option>
+            <option value="EXPIREE">{{ 'status.EXPIREE' | translate }}</option>
+            <option value="HONOREE">{{ 'status.HONOREE' | translate }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPOSANT LISTE -->
+  <app-reservations-list
+    [reservations]="reservations"
+    [loading]="loading"
+    [error]="error"
+    [cancelLoading]="cancelLoading"
+    [deleteLoading]="deleteLoading"
+    [isBibliothecaire]="isBibliothecaire"
+    (retry)="onRetry()"
+    (annuler)="onAnnulerReservation($event)"
+    (supprimer)="onSupprimerReservation($event)">
+  </app-reservations-list>
+</div>

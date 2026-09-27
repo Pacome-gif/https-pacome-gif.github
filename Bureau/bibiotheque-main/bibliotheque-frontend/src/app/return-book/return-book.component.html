@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <h2 class="page-title"><lucide-icon name="undo-2" class="w-6 h-6"></lucide-icon> Livres à retourner</h2>
+  <div class="table-responsive-wrapper">
+    <table class="table table-success table-striped">
+      <thead>
+        <tr>
+          <th>ID Livre</th>
+          <th>Date emprunt</th>
+          <th>Date retour</th>
+          <th>Date échéance</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let b of borrow">
+          <td data-label="ID Livre">{{ b.bookId }}</td>
+          <td data-label="Date emprunt">{{ b.issueDate }}</td>
+          <td data-label="Date retour">{{ b.returnDate }}</td>
+          <td data-label="Date échéance">{{ b.dueDate }}</td>
+          <td data-label="Actions">
+            <div *ngIf="b.returnDate === null">
+              <button (click)="returnBook(b.borrowId)" class="btn btn-success btn-sm icon-btn">
+                <lucide-icon name="undo-2" class="w-4 h-4"></lucide-icon> Retourner
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

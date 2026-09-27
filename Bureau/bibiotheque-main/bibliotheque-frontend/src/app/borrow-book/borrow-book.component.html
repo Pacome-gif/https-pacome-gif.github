@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <h2 class="page-title"><lucide-icon name="book-plus" class="w-6 h-6"></lucide-icon> Livres disponibles à l'emprunt</h2>
+  <div class="table-responsive-wrapper">
+    <table class="table table-success table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Auteur</th>
+          <th>Genre</th>
+          <th>Copies</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books">
+          <td data-label="ID">{{ book.bookId }}</td>
+          <td data-label="Nom">{{ book.bookName }}</td>
+          <td data-label="Auteur">{{ book.bookAuthor }}</td>
+          <td data-label="Genre">{{ book.bookGenre }}</td>
+          <td data-label="Copies">{{ book.noOfCopies }}</td>
+          <td data-label="Actions">
+            <button (click)="borrowBook(book.bookId)" class="btn btn-success btn-sm icon-btn">
+              <lucide-icon name="book-plus" class="w-4 h-4"></lucide-icon> Emprunter
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

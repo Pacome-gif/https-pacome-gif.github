@@ -1,0 +1,78 @@
+<!-- ÉTAT : CHARGEMENT -->
+<div *ngIf="loading" class="text-center py-5">
+  <div class="spinner-border spinner-navy" role="status">
+    <span class="visually-hidden">{{ 'list.loading' | translate }}</span>
+  </div>
+  <p class="mt-3 text-muted">{{ 'list.loading' | translate }}</p>
+</div>
+
+<!-- ÉTAT : ERREUR -->
+<div *ngIf="error && !loading" class="empty-state-error" role="alert">
+  <h5 class="icon-header"><lucide-icon name="triangle-alert" class="w-5 h-5"></lucide-icon> {{ 'list.errorTitle' | translate }}</h5>
+  <p>{{ error }}</p>
+  <button class="du-btn du-btn-primary du-btn-sm" (click)="onRetry()">{{ 'list.retry' | translate }}</button>
+</div>
+
+<!-- ÉTAT : LISTE VIDE -->
+<div *ngIf="!loading && !error && reservations.length === 0" class="empty-state" role="alert">
+  <h5>{{ 'list.emptyTitle' | translate }}</h5>
+  <p>
+    {{ 'list.emptyText1' | translate }}
+    <br>{{ 'list.emptyText2' | translate }}
+  </p>
+</div>
+
+<!-- ÉTAT : DONNÉES -->
+<!-- Grille flex de cartes : chaque réservation affiche ses champs en libellés
+     alignés à gauche, empilés du haut vers le bas ; les cartes s'enchaînent
+     et s'enroulent (flex-wrap) pour s'adapter à toute taille d'écran. -->
+<div *ngIf="!loading && !error && reservations.length > 0" class="reservations-grid">
+  <div class="reservation-card" *ngFor="let reservation of reservations">
+    <div class="reservation-field">
+      <span class="field-label">{{ 'list.field.book' | translate }}</span>
+      <span class="field-value">{{ reservation.livreNom }}</span>
+    </div>
+    <div class="reservation-field">
+      <span class="field-label">{{ 'list.field.member' | translate }}</span>
+      <span class="field-value">{{ reservation.adherentNom }}</span>
+    </div>
+    <div class="reservation-field">
+      <span class="field-label">{{ 'list.field.status' | translate }}</span>
+      <span class="field-value">
+        <span [class]="getStatutClass(reservation.statut)">{{ ('status.' + reservation.statut) | translate }}</span>
+      </span>
+    </div>
+    <div class="reservation-field">
+      <span class="field-label">{{ 'list.field.reservedAt' | translate }}</span>
+      <span class="field-value">{{ reservation.dateReservation | date:'dd/MM/yyyy HH:mm' }}</span>
+    </div>
+    <div class="reservation-field">
+      <span class="field-label">{{ 'list.field.expiresAt' | translate }}</span>
+      <span class="field-value">{{ reservation.dateExpiration | date:'dd/MM/yyyy HH:mm' }}</span>
+    </div>
+    <div class="reservation-field">
+      <span class="field-label">{{ 'list.field.action' | translate }}</span>
+      <span class="field-value action-buttons">
+        <button
+          *ngIf="peutAnnuler(reservation.statut)"
+          class="du-btn du-btn-sm du-btn-outline du-btn-error icon-btn"
+          (click)="onAnnuler(reservation)"
+          [disabled]="cancelLoading === reservation.id || deleteLoading === reservation.id">
+          <span *ngIf="cancelLoading === reservation.id" class="spinner-border spinner-border-sm me-1"></span>
+          <lucide-icon *ngIf="cancelLoading !== reservation.id" name="undo-2" class="w-4 h-4"></lucide-icon>
+          {{ 'list.cancel' | translate }}
+        </button>
+        <span *ngIf="!peutAnnuler(reservation.statut) && !isBibliothecaire" class="text-muted">—</span>
+        <button
+          *ngIf="isBibliothecaire"
+          class="du-btn du-btn-sm du-btn-outline icon-btn"
+          (click)="onSupprimer(reservation)"
+          [disabled]="cancelLoading === reservation.id || deleteLoading === reservation.id">
+          <span *ngIf="deleteLoading === reservation.id" class="spinner-border spinner-border-sm me-1"></span>
+          <lucide-icon *ngIf="deleteLoading !== reservation.id" name="trash-2" class="w-4 h-4"></lucide-icon>
+          {{ 'list.delete' | translate }}
+        </button>
+      </span>
+    </div>
+  </div>
+</div>

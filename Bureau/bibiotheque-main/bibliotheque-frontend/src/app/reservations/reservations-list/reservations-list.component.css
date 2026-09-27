@@ -1,0 +1,136 @@
+/* Grille de réservations en cartes — flex, s'adapte à toute taille d'écran */
+.reservations-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.reservation-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 280px;
+  min-width: 260px;
+  background-color: #ffffff;
+  border: 1px solid #d7dee8;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 31, 63, 0.10);
+  transition: box-shadow 0.2s ease;
+}
+
+.reservation-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 31, 63, 0.18);
+}
+
+/* Chaque champ : libellé aligné à gauche, valeur à droite, empilés du haut vers le bas */
+.reservation-field {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eef2f8;
+  text-align: left;
+}
+
+.reservation-field:last-child {
+  border-bottom: none;
+}
+
+.field-label {
+  font-weight: 600;
+  color: #14315c;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.field-value {
+  color: #333333;
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+/* Groupe de boutons d'action (annuler / supprimer) */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+/* Badges de statut */
+.badge {
+  font-size: 0.75rem;
+  padding: 0.4em 0.7em;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+/* État vide (informationnel, thème marine) */
+.empty-state {
+  background-color: #eef2f8;
+  color: #14315c;
+  border: 1px solid #c7d2e6;
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.empty-state h5 {
+  color: #14315c;
+  font-weight: 600;
+}
+
+.empty-state p {
+  color: #14315c;
+  margin-bottom: 0;
+}
+
+/* État erreur — reste rouge, signal volontairement distinct de l'erreur */
+.empty-state-error {
+  background-color: #f8d7da;
+  color: #842029;
+  border: 1px solid #f5c2c7;
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.empty-state-error h5 {
+  color: #842029;
+  font-weight: 600;
+}
+
+.empty-state-error p {
+  color: #842029;
+  margin-bottom: 1rem;
+}
+
+/* Bouton "Réessayer" */
+.btn-navy {
+  background-color: #14315c;
+  border-color: #14315c;
+  color: #ffffff;
+}
+
+.btn-navy:hover {
+  background-color: #1c4587;
+  border-color: #1c4587;
+  color: #ffffff;
+}
+
+/* Spinner */
+.spinner-border {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.spinner-navy {
+  color: #14315c;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .reservation-card {
+    flex: 1 1 100%;
+  }
+}

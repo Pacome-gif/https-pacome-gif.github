@@ -1,0 +1,49 @@
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Reservation } from '../../_model/reservation';
+
+@Component({
+  selector: 'app-reservations-list',
+  templateUrl: './reservations-list.component.html',
+  styleUrls: ['./reservations-list.component.css']
+})
+export class ReservationsListComponent {
+
+  @Input() reservations: Reservation[] = [];
+  @Input() loading = false;
+  @Input() error: string | null = null;
+  @Input() cancelLoading: number | null = null;
+  @Input() deleteLoading: number | null = null;
+  // DELETE /api/reservations/{id} est réservé au BIBLIOTHECAIRE côté backend (RS-02).
+  @Input() isBibliothecaire = false;
+
+  @Output() retry = new EventEmitter<void>();
+  @Output() annuler = new EventEmitter<Reservation>();
+  @Output() supprimer = new EventEmitter<Reservation>();
+
+  peutAnnuler(statut: string): boolean {
+    return statut === 'EN_ATTENTE' || statut === 'DISPONIBLE';
+  }
+
+  getStatutClass(statut: string): string {
+    switch (statut) {
+      case 'EN_ATTENTE': return 'badge bg-warning text-dark';
+      case 'DISPONIBLE': return 'badge bg-success';
+      case 'ANNULEE': return 'badge bg-secondary';
+      case 'EXPIREE': return 'badge bg-danger';
+      case 'HONOREE': return 'badge bg-info';
+      default: return 'badge bg-secondary';
+    }
+  }
+
+  onRetry(): void {
+    this.retry.emit();
+  }
+
+  onAnnuler(reservation: Reservation): void {
+    this.annuler.emit(reservation);
+  }
+
+  onSupprimer(reservation: Reservation): void {
+    this.supprimer.emit(reservation);
+  }
+}

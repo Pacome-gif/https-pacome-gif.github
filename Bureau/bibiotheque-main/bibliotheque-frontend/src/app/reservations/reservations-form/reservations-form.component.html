@@ -1,0 +1,63 @@
+<div class="card mb-4">
+  <div class="card-header card-header-navy text-white">
+    <h5 class="mb-0">{{ 'form.title' | translate }}</h5>
+  </div>
+  <div class="card-body">
+    <div class="row g-3">
+      <!-- Sélection du livre -->
+      <div class="col-12" [class.col-md-5]="isBibliothecaire" [class.col-md-8]="!isBibliothecaire">
+        <label for="livreSelect" class="form-label">{{ 'form.book' | translate }}</label>
+        <select
+          id="livreSelect"
+          class="du-select du-select-bordered w-full"
+          [(ngModel)]="selectedLivreId"
+          [class.is-invalid]="formError && !selectedLivreId">
+          <option [ngValue]="null" disabled>{{ 'form.bookPlaceholder' | translate }}</option>
+          <option *ngFor="let book of books" [ngValue]="book.bookId">
+            {{ book.bookName }} ({{ book.noOfCopies }} {{ 'form.bookCopiesSuffix' | translate }})
+          </option>
+        </select>
+      </div>
+
+      <!-- Sélection de l'adhérent : uniquement pour un BIBLIOTHECAIRE (RS-04 : un ADHERENT
+           réserve toujours pour lui-même, son identité vient du token, pas de choix ici). -->
+      <div class="col-12 col-md-5" *ngIf="isBibliothecaire">
+        <label for="adherentSelect" class="form-label">{{ 'form.member' | translate }}</label>
+        <select
+          id="adherentSelect"
+          class="du-select du-select-bordered w-full"
+          [(ngModel)]="selectedAdherentId"
+          [class.is-invalid]="formError && !selectedAdherentId">
+          <option [ngValue]="null" disabled>{{ 'form.memberPlaceholder' | translate }}</option>
+          <option *ngFor="let user of users" [ngValue]="user.userId">
+            {{ user.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Pour un ADHERENT : rappel que la réservation se fait en son nom -->
+      <div class="col-12" *ngIf="!isBibliothecaire">
+        <span class="form-text">{{ 'form.memberSelf' | translate }}</span>
+      </div>
+
+      <!-- Bouton de soumission -->
+      <div class="col-12 col-md-2 d-flex align-items-end">
+        <button
+          class="du-btn du-btn-primary w-full"
+          (click)="onSubmit()"
+          [disabled]="!peutSoumettre">
+          {{ 'form.submit' | translate }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Messages de retour -->
+    <div *ngIf="formError" class="du-alert du-alert-error mt-3" role="alert">
+      <lucide-icon name="triangle-alert" class="w-5 h-5"></lucide-icon>
+      <span><strong>{{ 'form.errorPrefix' | translate }}</strong> {{ formError }}</span>
+    </div>
+    <div *ngIf="formSuccess" class="du-alert du-alert-success mt-3" role="alert">
+      <strong>{{ 'form.successPrefix' | translate }}</strong> {{ 'form.successMessage' | translate }}
+    </div>
+  </div>
+</div>

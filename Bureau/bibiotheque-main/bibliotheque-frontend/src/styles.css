@@ -1,0 +1,285 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================
+   STYLES GLOBAUX RESPONSIVE
+   ==========================================
+
+/* Reset et base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Container responsive */
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Tableaux responsives - scroll horizontal sur mobile */
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  min-width: 600px;
+}
+
+/* Titres responsive */
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+/* Boutons responsive */
+.btn {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+  .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .btn-sm {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Formulaires responsive */
+.form-control {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+}
+
+@media (max-width: 576px) {
+  .form-control {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Cards responsive */
+.card {
+  margin-bottom: 1rem;
+}
+
+/* Alerts responsive */
+.alert {
+  padding: 0.75rem 1rem;
+}
+
+@media (max-width: 576px) {
+  .alert {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Spinner responsive */
+.spinner-border {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+/* Badges responsive */
+.badge {
+  font-size: 0.75rem;
+  padding: 0.35em 0.65em;
+}
+
+@media (min-width: 768px) {
+  .badge {
+    font-size: 0.85em;
+  }
+}
+
+/* Marges et espacement responsive */
+.mt-4 {
+  margin-top: 1.5rem !important;
+}
+
+@media (min-width: 768px) {
+  .mt-4 {
+    margin-top: 2.5rem !important;
+  }
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+@media (min-width: 768px) {
+  .mb-4 {
+    margin-bottom: 2.5rem !important;
+  }
+}
+
+/* Grille responsive */
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.row > [class*="col-"] {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* ==========================================
+   THÈME BLEU MARINE — remplace le vert "success" de Bootstrap
+   par du bleu marine partout dans l'application, pour rester
+   cohérent avec l'en-tête et l'écran Réservations.
+   ========================================== */
+.btn-success {
+  color: #fff;
+  background-color: #14315c;
+  border-color: #14315c;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active {
+  color: #fff !important;
+  background-color: #1c4587 !important;
+  border-color: #1c4587 !important;
+}
+
+.btn-success:disabled,
+.btn-success.disabled {
+  background-color: #9aa9c2;
+  border-color: #9aa9c2;
+}
+
+.table-success {
+  --bs-table-bg: #eef2f8;
+  --bs-table-striped-bg: #e2e8f2;
+  --bs-table-striped-color: #14315c;
+  --bs-table-active-bg: #d7e0ee;
+  --bs-table-active-color: #14315c;
+  --bs-table-hover-bg: #dbe4f0;
+  --bs-table-hover-color: #14315c;
+  color: #14315c;
+  border-color: #d7e0ee;
+}
+
+/* En-tête de carte bleu marine réutilisable (formulaires "Ajouter...") */
+.card-header-navy {
+  background: linear-gradient(135deg, #14315c, #1c4587) !important;
+}
+
+/* En-tête de carte avec icône + titre alignés (formulaires : create/update book/user, login). */
+.icon-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Bouton avec icône : icône et texte alignés (boutons d'action des tableaux, formulaires). */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Titre de page avec icône (listes de livres/utilisateurs/emprunts...). */
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #14315c;
+}
+
+/* Tables sur mobile - mode carte */
+@media (max-width: 767px) {
+  /* Le tableau garde `display:table` par défaut et calcule sa largeur intrinsèque à partir du
+     contenu non replié (ex. la cellule Actions avec plusieurs boutons) : sans cette ligne, il
+     déborde silencieusement du viewport et .table-responsive-wrapper le fait défiler
+     horizontalement au lieu de l'empiler proprement en cartes. `min-width: 600px` (ligne ~39,
+     pensé pour ne pas trop écraser un tableau classique sur tablette) doit aussi être neutralisé
+     ici : sinon il force le débordement même une fois le tableau passé en display:block. */
+  .table,
+  .table tbody {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .table thead {
+    display: none;
+  }
+  
+  .table tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+    background-color: #ffffff;
+    border: 1px solid #d7dee8;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 31, 63, 0.10);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .table tbody tr:hover {
+    box-shadow: 0 4px 14px rgba(0, 31, 63, 0.18);
+  }
+
+  .table tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    text-align: right;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid #eef2f8;
+  }
+
+  .table tbody td:last-child {
+    border-bottom: none;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .table tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    color: #14315c;
+  }
+}

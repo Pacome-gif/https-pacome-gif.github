@@ -6,6 +6,7 @@ import {
 import { TestBed } from '@angular/core/testing';
 
 import { App } from './app';
+import { API_BASE_URL } from './services/ticket.service';
 
 describe('App (conteneur)', () => {
   let httpMock: HttpTestingController;
@@ -27,7 +28,7 @@ describe('App (conteneur)', () => {
 
     expect(fixture.nativeElement.textContent).toContain('Chargement des tickets');
 
-    httpMock.expectOne('/api/tickets').flush([]);
+    httpMock.expectOne(API_BASE_URL).flush([]);
     fixture.detectChanges();
   });
 
@@ -35,7 +36,7 @@ describe('App (conteneur)', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
 
-    httpMock.expectOne('/api/tickets').flush([]);
+    httpMock.expectOne(API_BASE_URL).flush([]);
     fixture.detectChanges();
 
     expect(fixture.nativeElement.textContent).toContain('Aucun ticket');
@@ -46,7 +47,7 @@ describe('App (conteneur)', () => {
     fixture.detectChanges();
 
     httpMock
-      .expectOne('/api/tickets')
+      .expectOne(API_BASE_URL)
       .error(new ProgressEvent('error'), { status: 0, statusText: 'Unknown Error' });
     fixture.detectChanges();
 
@@ -57,7 +58,7 @@ describe('App (conteneur)', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
 
-    httpMock.expectOne('/api/tickets').flush([
+    httpMock.expectOne(API_BASE_URL).flush([
       {
         id: 1,
         titre: 'Imprimante hors service',

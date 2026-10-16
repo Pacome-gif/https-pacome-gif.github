@@ -11,19 +11,20 @@ import {
 import { ErreurApi } from './erreur-api';
 
 /**
+ * Racine de l'API. Appel direct du backend : une panne reseau remonte alors en
+ * statut 0, ce qui permet d'annoncer "serveur injoignable" plutot qu'une erreur
+ * opaque. Le backend autorise l'origine http://localhost:4200 (voir WebConfig).
+ */
+export const API_BASE_URL = 'http://localhost:8080/api/tickets';
+
+/**
  * Seul point d'entree vers l'API des tickets.
  * Aucun composant n'appelle HttpClient directement : ils passent tous par ici.
  */
 @Injectable({ providedIn: 'root' })
 export class TicketService {
   private readonly http = inject(HttpClient);
-
-  /**
-   * Appel direct du backend : une panne reseau remonte alors en statut 0,
-   * ce qui permet d'annoncer "serveur injoignable" plutot qu'une erreur opaque.
-   * Le backend autorise l'origine http://localhost:4200 (voir WebConfig).
-   */
-  private readonly baseUrl = 'http://localhost:8080/api/tickets';
+  private readonly baseUrl = API_BASE_URL;
 
   /** Liste les tickets, filtres par statut si un statut est fourni. */
   lister(statut?: StatutTicket | null): Observable<Ticket[]> {

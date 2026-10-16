@@ -16,6 +16,11 @@ Le script démarre la base Docker, puis le backend et l'écran, attend que chacu
 réponde et affiche les adresses. Il ne redémarre pas un service déjà lancé, donc
 on peut le relancer sans risque. Journaux dans `logs/`.
 
+Il tourne sous Linux comme sous macOS : s'il trouve `setsid` il s'en sert, sinon
+il arrête lui-même toute la descendance des processus qu'il a lancés. Et si un
+service refuse de démarrer, il affiche la fin de son journal et n'abandonne
+pas derrière lui ceux qu'il avait déjà lancés.
+
 | | |
 |---|---|
 | Écran | <http://localhost:4200> |

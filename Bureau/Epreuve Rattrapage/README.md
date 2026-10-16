@@ -47,6 +47,16 @@ cd frontend && npm install && npm start
 L'écran appelle directement l'API sur `http://localhost:8080` (le backend
 autorise l'origine `http://localhost:4200`, voir `WebConfig`).
 
+## Ce que fait l'écran
+
+Un écran unique (<http://localhost:4200>) : compteur de tickets ouverts, formulaire de
+création, puis la liste avec filtre par statut, badge de couleur par statut, tri par
+date de création (en-tête cliquable) et pagination (5 par page). Le bouton *Fermer*
+n'apparaît que sur un ticket OUVERT ou EN_COURS et demande confirmation.
+
+Les quatre états sont gérés : chargement, données, liste vide (« Aucun ticket ») et
+erreur avec un bouton *Réessayer*.
+
 ## Les règles de gestion
 
 | Réf. | Règle |

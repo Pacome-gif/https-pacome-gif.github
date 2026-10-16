@@ -2,7 +2,7 @@
   <header class="entete-page">
     <h1>Support — Suivi des tickets</h1>
     <p class="compteur">
-      {{ nbOuverts() }} ticket(s) ouvert(s) parmi {{ tickets().length }} affiché(s)
+      {{ nbOuverts() }} ticket(s) ouvert(s) sur {{ tickets().length }} au total
     </p>
   </header>
 
@@ -17,11 +17,20 @@
   }
 
   <app-ticket-list
-    [tickets]="tickets()"
+    [tickets]="ticketsPage()"
     [chargement]="chargement()"
     [erreur]="erreurChargement()"
     [filtre]="filtre()"
+    [tri]="triDate()"
+    [page]="page()"
+    [nbPages]="nbPages()"
+    [premier]="premierAffiche()"
+    [dernier]="dernierAffiche()"
+    [total]="tickets().length"
     (changerFiltre)="changerFiltre($event)"
+    (changerTri)="changerTri($event)"
+    (pagePrecedente)="pagePrecedente()"
+    (pageSuivante)="pageSuivante()"
     (fermer)="fermerTicket($event)"
     (reessayer)="charger()"
   />

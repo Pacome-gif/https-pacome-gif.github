@@ -5,6 +5,9 @@ export const TOUS_LES_STATUTS = 'TOUS' as const;
 
 export type FiltreStatut = StatutTicket | typeof TOUS_LES_STATUTS;
 
+/** Sens du tri par date de creation (bonus). */
+export type TriDate = 'recent' | 'ancien';
+
 export interface Ticket {
   id: number;
   titre: string;

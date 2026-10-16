@@ -35,7 +35,17 @@
         <tr>
           <th scope="col">Titre</th>
           <th scope="col">Statut</th>
-          <th scope="col">Date de création</th>
+          <th scope="col" [attr.aria-sort]="tri === 'recent' ? 'descending' : 'ascending'">
+            <button
+              type="button"
+              class="tri"
+              title="Trier par date de création"
+              (click)="basculerTri()"
+            >
+              Date de création
+              <span aria-hidden="true">{{ tri === 'recent' ? '↓' : '↑' }}</span>
+            </button>
+          </th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -63,5 +73,32 @@
         }
       </tbody>
     </table>
+
+    <!-- Bonus : pagination de la liste -->
+    <div class="pagination">
+      <span class="etendue">{{ premier }}–{{ dernier }} sur {{ total }}</span>
+
+      <div class="commandes">
+        <button
+          type="button"
+          class="secondaire"
+          [disabled]="page <= 1"
+          (click)="pagePrecedente.emit()"
+        >
+          Précédent
+        </button>
+
+        <span class="numero">Page {{ page }} / {{ nbPages }}</span>
+
+        <button
+          type="button"
+          class="secondaire"
+          [disabled]="page >= nbPages"
+          (click)="pageSuivante.emit()"
+        >
+          Suivant
+        </button>
+      </div>
+    </div>
   }
 </section>

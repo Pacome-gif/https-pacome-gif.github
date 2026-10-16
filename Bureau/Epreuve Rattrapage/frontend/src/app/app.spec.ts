@@ -51,6 +51,8 @@ describe('App (conteneur)', () => {
     fixture.detectChanges();
 
     expect(fixture.nativeElement.textContent).toContain('Aucun ticket');
+    // Pas de tableau vide sans en-tete : aucune table n'est rendue.
+    expect(fixture.nativeElement.querySelector('table')).toBeNull();
   });
 
   it('explique que le serveur est injoignable en cas de panne reseau', () => {

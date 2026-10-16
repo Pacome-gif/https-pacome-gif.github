@@ -1,0 +1,92 @@
+.carte {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+h2 {
+  margin: 0 0 1rem;
+  font-size: 1.15rem;
+  color: #0f172a;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.obligatoire {
+  font-weight: 400;
+  color: #b91c1c;
+}
+
+.facultatif {
+  font-weight: 400;
+  color: #94a3b8;
+}
+
+input,
+textarea {
+  padding: 0.55rem 0.65rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: #0f172a;
+}
+
+input:focus,
+textarea:focus {
+  outline: 2px solid #bfdbfe;
+  border-color: #2563eb;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  align-self: flex-start;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid #2563eb;
+  border-radius: 6px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+button:disabled {
+  background: #cbd5e1;
+  border-color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.erreur-serveur {
+  margin: 0.9rem 0 0;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #fca5a5;
+  border-radius: 6px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 0.88rem;
+}

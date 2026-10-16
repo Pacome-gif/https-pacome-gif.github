@@ -1,0 +1,36 @@
+<section class="carte">
+  <h2>Nouveau ticket</h2>
+
+  <form #formulaire="ngForm" (ngSubmit)="soumettre()" novalidate>
+    <div class="champ">
+      <label for="titre">Titre <span class="obligatoire">(obligatoire)</span></label>
+      <input
+        id="titre"
+        name="titre"
+        type="text"
+        autocomplete="off"
+        placeholder="Ex. : Imprimante hors service"
+        [(ngModel)]="titre"
+      />
+    </div>
+
+    <div class="champ">
+      <label for="description">Description <span class="facultatif">(facultative)</span></label>
+      <textarea
+        id="description"
+        name="description"
+        rows="3"
+        placeholder="Décrivez le problème…"
+        [(ngModel)]="description"
+      ></textarea>
+    </div>
+
+    <button type="submit" [disabled]="titreVide || enCours">
+      {{ enCours ? 'Création…' : 'Créer le ticket' }}
+    </button>
+  </form>
+
+  @if (erreurServeur) {
+    <p class="erreur-serveur" role="alert">{{ erreurServeur }}</p>
+  }
+</section>

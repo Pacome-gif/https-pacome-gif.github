@@ -1,0 +1,67 @@
+<section class="carte">
+  <div class="entete">
+    <h2>Tickets</h2>
+
+    <label class="filtre">
+      Statut
+      <select [value]="filtre" (change)="surChangementFiltre($event)">
+        <option value="TOUS">Tous</option>
+        <option value="OUVERT">OUVERT</option>
+        <option value="EN_COURS">EN_COURS</option>
+        <option value="FERME">FERME</option>
+      </select>
+    </label>
+  </div>
+
+  @if (chargement) {
+    <!-- Etat 1 : chargement -->
+    <p class="etat chargement" aria-live="polite">
+      <span class="rouage" aria-hidden="true"></span>
+      Chargement des tickets…
+    </p>
+  } @else if (erreur) {
+    <!-- Etat 4 : erreur, avec un moyen de reessayer -->
+    <div class="etat erreur" role="alert">
+      <p>{{ erreur }}</p>
+      <button type="button" class="secondaire" (click)="reessayer.emit()">Réessayer</button>
+    </div>
+  } @else if (tickets.length === 0) {
+    <!-- Etat 3 : liste vide, message explicite et pas de tableau sans en-tete -->
+    <p class="etat vide">Aucun ticket</p>
+  } @else {
+    <!-- Etat 2 : donnees -->
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Titre</th>
+          <th scope="col">Statut</th>
+          <th scope="col">Date de création</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (ticket of tickets; track ticket.id) {
+          <tr>
+            <td>
+              <span class="titre">{{ ticket.titre }}</span>
+              @if (ticket.description) {
+                <span class="description">{{ ticket.description }}</span>
+              }
+            </td>
+            <td>
+              <span [class]="classeBadge(ticket.statut)">{{ ticket.statut }}</span>
+            </td>
+            <td>{{ ticket.dateCreation | date: 'dd/MM/yyyy HH:mm' }}</td>
+            <td>
+              @if (peutEtreFerme(ticket)) {
+                <button type="button" (click)="fermer.emit(ticket.id)">Fermer</button>
+              } @else {
+                <span class="inactif">—</span>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</section>

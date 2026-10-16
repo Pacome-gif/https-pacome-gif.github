@@ -1,0 +1,28 @@
+<main class="page">
+  <header class="entete-page">
+    <h1>Support — Suivi des tickets</h1>
+    <p class="compteur">
+      {{ nbOuverts() }} ticket(s) ouvert(s) parmi {{ tickets().length }} affiché(s)
+    </p>
+  </header>
+
+  <app-ticket-form
+    [enCours]="creationEnCours()"
+    [erreurServeur]="erreurFormulaire()"
+    (creer)="creerTicket($event)"
+  />
+
+  @if (messageAction()) {
+    <p class="alerte" role="alert">{{ messageAction() }}</p>
+  }
+
+  <app-ticket-list
+    [tickets]="tickets()"
+    [chargement]="chargement()"
+    [erreur]="erreurChargement()"
+    [filtre]="filtre()"
+    (changerFiltre)="changerFiltre($event)"
+    (fermer)="fermerTicket($event)"
+    (reessayer)="charger()"
+  />
+</main>

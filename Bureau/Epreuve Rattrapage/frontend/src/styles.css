@@ -1,0 +1,273 @@
+/*
+ * Theme global : palette, elevations et typographie.
+ * Tout se retouche ici, les composants n'utilisent que ces variables.
+ */
+:root {
+  color-scheme: light;
+
+  --fond: #eef2f9;
+  --surface: #ffffff;
+  --surface-douce: #f8fafc;
+  --bordure: #e2e8f0;
+  --bordure-forte: #cbd5e1;
+
+  --texte: #0f172a;
+  --texte-moyen: #475569;
+  --texte-doux: #64748b;
+
+  --primaire: #2563eb;
+  --primaire-fonce: #1d4ed8;
+  --halo: rgba(37, 99, 235, 0.18);
+
+  --danger-fond: #fef2f2;
+  --danger-bordure: #fecaca;
+  --danger-texte: #b91c1c;
+
+  --ombre-carte: 0 1px 2px rgba(15, 23, 42, 0.04), 0 10px 26px -16px rgba(15, 23, 42, 0.28);
+  --ombre-bouton: 0 8px 16px -10px rgba(37, 99, 235, 0.9);
+  --rayon: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  /* Un voile clair en haut de page : le fond ne fait pas « aplat ». */
+  background:
+    radial-gradient(1100px 380px at 50% -160px, #ffffff 0%, rgba(255, 255, 255, 0) 72%),
+    var(--fond);
+  color: var(--texte);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--halo);
+}
+
+/* Anneau de focus unique pour tout l'ecran (clavier). */
+:focus-visible {
+  outline: 2px solid var(--primaire);
+  outline-offset: 2px;
+}
+
+/*
+ * Primitives partagees par les composants : la carte, son titre, le panneau de
+ * refus et l'indicateur d'attente. Les garder ici evite de les dupliquer (et
+ * evite deux fois la meme animation) dans chaque composant.
+ */
+.carte {
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  background: var(--surface);
+  box-shadow: var(--ombre-carte);
+  padding: 1.5rem;
+}
+
+.carte > h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1.15rem;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--texte);
+}
+
+/* Repère coloré devant chaque titre de carte. */
+.carte > h2::before {
+  content: '';
+  flex: none;
+  width: 4px;
+  height: 17px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--primaire), #38bdf8);
+}
+
+/* Panneau de refus du serveur (400 RG-01, 409 RG-02/RG-03) et panneau d'erreur. */
+.panneau-danger {
+  border: 1px solid var(--danger-bordure);
+  border-left: 4px solid #ef4444;
+  border-radius: 10px;
+  background: var(--danger-fond);
+  color: var(--danger-texte);
+}
+
+/* Indicateur d'attente, utilise par la liste et par le bouton de creation. */
+.rouage {
+  flex: none;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #cbd5e1;
+  border-top-color: var(--primaire);
+  border-radius: 50%;
+  animation: tourner 0.8s linear infinite;
+}
+
+@keyframes tourner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rouage {
+    animation-duration: 2s;
+  }
+}
+
+/* Boutons : variations partagees par les deux composants. */
+.bouton-principal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.1rem;
+  border: 1px solid var(--primaire-fonce);
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primaire), var(--primaire-fonce));
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--ombre-bouton);
+  transition: transform 0.12s ease, box-shadow 0.15s ease;
+}
+
+.bouton-principal:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 20px -12px rgba(37, 99, 235, 1);
+}
+
+.bouton-principal:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.bouton-principal:disabled {
+  border-color: transparent;
+  background: #e2e8f0;
+  color: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+button.bouton-fermer,
+button.bouton-reessayer,
+button.secondaire {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--bordure-forte);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--texte-moyen);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+button.bouton-fermer {
+  border-color: var(--danger-bordure);
+  color: var(--danger-texte);
+}
+
+button.bouton-fermer:hover {
+  border-color: #fca5a5;
+  background: var(--danger-fond);
+}
+
+button.bouton-reessayer {
+  border-color: var(--danger-texte);
+  color: var(--danger-texte);
+}
+
+button.bouton-reessayer:hover {
+  background: var(--danger-texte);
+  color: #fff;
+}
+
+button.secondaire:hover:not(:disabled) {
+  border-color: #94a3b8;
+  background: var(--surface-douce);
+  color: var(--texte);
+}
+
+button.secondaire:disabled {
+  border-color: var(--bordure);
+  background: var(--surface-douce);
+  color: #b0bcca;
+  cursor: not-allowed;
+}
+
+/* Badges de statut : les trois couleurs sont des jetons de l'application. */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.22rem 0.6rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* Pastille de couleur, pour rester lisible meme sans couleur. */
+.badge::before {
+  content: '';
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.badge-ouvert {
+  border-color: #bbf7d0;
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.badge-en_cours {
+  border-color: #fde68a;
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.badge-ferme {
+  border-color: #cbd5e1;
+  background: #e2e8f0;
+  color: #475569;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bouton-principal,
+  button.bouton-fermer,
+  button.bouton-reessayer,
+  button.secondaire {
+    transition: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .carte {
+    padding: 1.15rem;
+  }
+}

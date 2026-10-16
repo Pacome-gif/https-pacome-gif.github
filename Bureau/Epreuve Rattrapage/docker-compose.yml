@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: ticket-postgres
+    environment:
+      POSTGRES_DB: tickets
+      POSTGRES_USER: ticket_user
+      POSTGRES_PASSWORD: ticket_pass
+    ports:
+      # 5433 en hôte pour ne pas entrer en conflit avec une autre base locale sur 5432
+      - "5433:5432"
+    volumes:
+      - ticket_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ticket_user -d tickets"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  ticket_pgdata:

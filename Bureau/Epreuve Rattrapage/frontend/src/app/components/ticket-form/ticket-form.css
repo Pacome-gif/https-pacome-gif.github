@@ -1,0 +1,89 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+label {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--texte-moyen);
+}
+
+.obligatoire {
+  font-weight: 500;
+  color: var(--danger-texte);
+}
+
+.facultatif {
+  font-weight: 400;
+  color: #94a3b8;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--bordure-forte);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--texte);
+  font-family: inherit;
+  font-size: 0.92rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
+}
+
+input:hover,
+textarea:hover {
+  border-color: #94a3b8;
+}
+
+/* Anneau de focus maison : l'outline global ferait doublon ici. */
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primaire);
+  box-shadow: 0 0 0 3px var(--halo);
+}
+
+textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.indice {
+  margin: 0;
+  color: var(--texte-doux);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.bouton-principal {
+  margin-top: 0.15rem;
+}
+
+/* Le rouage partage prend la couleur du bouton bleu. */
+.bouton-principal .rouage {
+  border-color: rgba(255, 255, 255, 0.45);
+  border-top-color: #fff;
+}
+
+/* Message de refus du serveur, a cote du formulaire (voir .panneau-danger). */
+.erreur-serveur {
+  margin: 1rem 0 0;
+  padding: 0.7rem 0.85rem;
+  font-size: 0.86rem;
+  font-weight: 500;
+  line-height: 1.45;
+}

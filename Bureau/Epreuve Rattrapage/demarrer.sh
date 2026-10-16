@@ -61,6 +61,9 @@ arreter() {
     kill -- "-$pid" 2>/dev/null || kill "$pid" 2>/dev/null || true
   done
   info "Pour tout arrêter, y compris la base : docker compose down"
+  # Sans ce exit, bash reprend la commande interrompue après le gestionnaire et
+  # le script resterait à attendre un service qu'on vient d'arrêter.
+  exit 130
 }
 
 trap arreter INT TERM

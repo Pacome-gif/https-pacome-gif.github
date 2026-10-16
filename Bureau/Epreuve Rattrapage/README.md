@@ -6,34 +6,41 @@ un statut et une date de création. On peut en créer, les lister et les fermer.
 - **Backend** : Spring Boot 3.5.3 (Java 17) + PostgreSQL 16 + springdoc/Swagger
 - **Frontend** : Angular 20 (un seul écran : liste, filtre, formulaire, fermeture)
 
-## 1. La base de données (Docker)
+## Tout démarrer en une commande
 
 ```bash
+./demarrer.sh
+```
+
+Le script démarre la base Docker, puis le backend et l'écran, attend que chacun
+réponde et affiche les adresses. Il ne redémarre pas un service déjà lancé, donc
+on peut le relancer sans risque. Journaux dans `logs/`.
+
+| | |
+|---|---|
+| Écran | <http://localhost:4200> |
+| API | <http://localhost:8080/api/tickets> |
+| Swagger | <http://localhost:8080/swagger-ui.html> |
+| Base | `localhost:5433` — `tickets` / `ticket_user` |
+
+`Ctrl+C` arrête le backend et l'écran ; la base reste allumée.
+Pour tout arrêter, y compris la base : `docker compose down`.
+
+## Ou service par service
+
+```bash
+# 1. la base (PostgreSQL 16, port 5433)
 docker compose up -d
+
+# 2. le backend (port 8080)
+cd backend && mvn spring-boot:run
+
+# 3. l'écran (port 4200)
+cd frontend && npm install && npm start
 ```
 
-PostgreSQL écoute sur `localhost:5433`, base `tickets`, utilisateur `ticket_user`.
-
-## 2. Le backend
-
-```bash
-cd backend
-mvn spring-boot:run
-```
-
-- API : <http://localhost:8080/api/tickets>
-- Swagger : <http://localhost:8080/swagger-ui/index.html>
-
-## 3. Le frontend
-
-```bash
-cd frontend
-npm install
-npm start
-```
-
-- Écran : <http://localhost:4200>
-- Le serveur de développement redirige `/api` vers le backend (`proxy.conf.json`).
+L'écran appelle directement l'API sur `http://localhost:8080` (le backend
+autorise l'origine `http://localhost:4200`, voir `WebConfig`).
 
 ## Les règles de gestion
 

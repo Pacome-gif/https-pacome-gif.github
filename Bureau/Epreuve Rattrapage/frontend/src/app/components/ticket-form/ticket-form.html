@@ -12,6 +12,7 @@
         placeholder="Ex. : Imprimante hors service"
         [(ngModel)]="titre"
       />
+      <p class="indice">100 caractères au maximum — le contrôle est fait par le serveur.</p>
     </div>
 
     <div class="champ">
@@ -25,12 +26,15 @@
       ></textarea>
     </div>
 
-    <button type="submit" [disabled]="titreVide || enCours">
+    <button type="submit" class="bouton-principal" [disabled]="titreVide || enCours">
+      @if (enCours) {
+        <span class="rouage" aria-hidden="true"></span>
+      }
       {{ enCours ? 'Création…' : 'Créer le ticket' }}
     </button>
   </form>
 
   @if (erreurServeur) {
-    <p class="erreur-serveur" role="alert">{{ erreurServeur }}</p>
+    <p class="erreur-serveur panneau-danger" role="alert">{{ erreurServeur }}</p>
   }
 </section>

@@ -1,38 +1,71 @@
-.carte {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 1.25rem;
-}
-
+/* -------------------------------------------------------------- Entete */
 .entete {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.entete h2 {
-  margin: 0;
-  font-size: 1.15rem;
-  color: #0f172a;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-bottom: 1.15rem;
 }
 
 .filtre {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  color: #475569;
+  gap: 0.55rem;
+  color: var(--texte-moyen);
+  font-size: 0.83rem;
+  font-weight: 600;
 }
 
-.filtre select {
-  padding: 0.4rem 0.5rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
+/* Chevron dessine en CSS : le select garde son comportement natif. */
+.selecteur {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.selecteur::after {
+  content: '';
+  position: absolute;
+  right: 0.7rem;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid var(--texte-doux);
+  border-bottom: 2px solid var(--texte-doux);
+  transform: translateY(-2px) rotate(45deg);
+  pointer-events: none;
+}
+
+select {
+  appearance: none;
+  min-width: 9.5rem;
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  border: 1px solid var(--bordure-forte);
+  border-radius: 10px;
   background: #fff;
+  color: var(--texte);
+  font-family: inherit;
   font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+select:hover {
+  border-color: #94a3b8;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--primaire);
+  box-shadow: 0 0 0 3px var(--halo);
+}
+
+/* -------------------------------------------------------------- Tableau */
+.tableau {
+  border: 1px solid var(--bordure);
+  border-radius: 12px;
+  overflow-x: auto;
 }
 
 table {
@@ -43,143 +76,65 @@ table {
 th,
 td {
   text-align: left;
-  padding: 0.65rem 0.5rem;
-  border-bottom: 1px solid #e2e8f0;
+  padding: 0.7rem 0.9rem;
   vertical-align: top;
-  font-size: 0.9rem;
 }
 
 th {
-  font-size: 0.78rem;
+  background: var(--surface-douce);
+  border-bottom: 1px solid var(--bordure);
+  color: var(--texte-doux);
+  font-size: 0.72rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #64748b;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+tbody td {
+  border-bottom: 1px solid #eef2f7;
+  font-size: 0.9rem;
+  transition: background 0.15s ease;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover td {
+  background: var(--surface-douce);
 }
 
 td .titre {
   display: block;
   font-weight: 600;
-  color: #0f172a;
+  color: var(--texte);
 }
 
 td .description {
-  display: block;
-  margin-top: 0.15rem;
-  color: #64748b;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 46ch;
+  margin-top: 0.2rem;
+  color: var(--texte-doux);
   font-size: 0.82rem;
+  line-height: 1.4;
 }
 
-.badge {
-  display: inline-block;
-  padding: 0.2rem 0.55rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.badge-ouvert {
-  background: #dcfce7;
-  color: #15803d;
-}
-
-.badge-en_cours {
-  background: #fef3c7;
-  color: #b45309;
-}
-
-.badge-ferme {
-  background: #e2e8f0;
-  color: #475569;
+td.date {
+  color: var(--texte-moyen);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .inactif {
   color: #cbd5e1;
 }
 
-.etat {
-  margin: 0;
-  padding: 1.25rem 0.5rem;
-  color: #475569;
-  font-size: 0.92rem;
-}
-
-.chargement {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.rouage {
-  width: 14px;
-  height: 14px;
-  border: 2px solid #cbd5e1;
-  border-top-color: #2563eb;
-  border-radius: 50%;
-  animation: tourner 0.8s linear infinite;
-}
-
-@keyframes tourner {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.erreur {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 1rem;
-  border: 1px solid #fca5a5;
-  border-radius: 8px;
-  background: #fef2f2;
-}
-
-.erreur p {
-  margin: 0;
-  color: #b91c1c;
-}
-
-.vide {
-  text-align: center;
-  color: #64748b;
-  font-style: italic;
-}
-
-button {
-  padding: 0.35rem 0.75rem;
-  border: 1px solid #2563eb;
-  border-radius: 6px;
-  background: #2563eb;
-  color: #fff;
-  font-size: 0.82rem;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #1d4ed8;
-}
-
-button.secondaire {
-  background: #fff;
-  color: #b91c1c;
-  border-color: #fca5a5;
-}
-
-button.secondaire:hover {
-  background: #fee2e2;
-}
-
-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.45;
-}
-
-button:disabled:hover {
-  background: #fff;
-}
-
-/* En-tete cliquable : indique que la colonne est triable */
+/* ---------------------------------------------------- En-tete triable */
 button.tri {
   display: inline-flex;
   align-items: center;
@@ -187,35 +142,184 @@ button.tri {
   padding: 0;
   border: none;
   background: none;
-  color: #64748b;
+  color: inherit;
   font: inherit;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  letter-spacing: inherit;
+  text-transform: inherit;
   cursor: pointer;
+  transition: color 0.15s ease;
 }
 
 button.tri:hover {
-  background: none;
-  color: #2563eb;
-  text-decoration: underline;
+  color: var(--primaire);
 }
 
+button.tri .fleche {
+  flex: none;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.fermer-icone svg {
+  display: block;
+  width: 13px;
+  height: 13px;
+}
+
+/* --------------------------------------------------------- Les 4 etats */
+.etat {
+  margin: 0;
+}
+
+.chargement {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1.5rem 0.25rem;
+  color: var(--texte-moyen);
+  font-size: 0.9rem;
+}
+
+/* Panneau d'erreur : la boite vient de .panneau-danger, ici la disposition. */
+.erreur {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+}
+
+.erreur-icone {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.erreur-icone svg {
+  width: 17px;
+  height: 17px;
+}
+
+.erreur-texte {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.erreur-texte p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.vide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 2.5rem 1rem;
+  text-align: center;
+}
+
+.vide-icone {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.5rem;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+
+.vide-icone svg {
+  width: 24px;
+  height: 24px;
+}
+
+.vide-titre {
+  margin: 0;
+  color: var(--texte);
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.vide-detail {
+  margin: 0;
+  color: var(--texte-doux);
+  font-size: 0.85rem;
+}
+
+/* ---------------------------------------------------------- Pagination */
 .pagination {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  margin-top: 0.9rem;
-  font-size: 0.85rem;
-  color: #475569;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--bordure);
+}
+
+.pagination .etendue {
+  color: var(--texte-doux);
+  font-size: 0.83rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .pagination .commandes {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
 
 .pagination .numero {
+  min-width: 6.5rem;
+  color: var(--texte-moyen);
+  font-size: 0.83rem;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  tbody td,
+  button.tri {
+    transition: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .entete {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .filtre {
+    width: 100%;
+  }
+
+  .selecteur,
+  select {
+    flex: 1;
+    min-width: 0;
+  }
+
+  th,
+  td {
+    padding: 0.6rem 0.7rem;
+  }
+
+  /* Sur mobile le tableau defile : on garde une colonne titre lisible. */
+  tbody td:first-child {
+    min-width: 11rem;
+  }
 }
